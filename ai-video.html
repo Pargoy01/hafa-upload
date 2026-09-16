@@ -218,28 +218,69 @@ function generatePrompt(){
         return;
     }
 
-    const prompt =
-`Buat video AI ${duration} dengan rasio ${ratio}.
+    const scenes = [
+        "Opening kuat yang langsung menarik perhatian penonton.",
+        "Memperkenalkan karakter utama dan situasi awal cerita.",
+        "Karakter mulai menghadapi masalah atau konflik.",
+        "Konflik berkembang dan emosi karakter semakin kuat.",
+        "Muncul kejadian tak terduga yang mengubah situasi.",
+        "Karakter mengambil keputusan penting.",
+        "Konflik mencapai titik yang semakin intens.",
+        "Terjadi plot twist yang mengejutkan.",
+        "Dampak plot twist mulai terlihat.",
+        "Ending kuat dengan hook yang membuat penonton ingin melihat episode berikutnya."
+    ];
 
-IDE CERITA:
+    let output = "";
+
+    scenes.forEach((scene,index)=>{
+
+        const number=index+1;
+
+        output +=
+`════════════════════════════════
+SCENE ${number} — ${duration}
+════════════════════════════════
+
+IDE UTAMA:
 ${idea}
 
-GAYA VISUAL:
-${style}, sangat realistis, cinematic seperti adegan film profesional, detail wajah natural, pencahayaan realistis, tekstur lingkungan sangat detail.
+AKSI ADEGAN:
+${scene}
+
+KARAKTER:
+K1 = Karakter utama, wajah dan pakaian konsisten.
+K2 = Karakter pendukung jika diperlukan.
+
+LOKASI:
+LOC_SCENE_${number}
+
+VISUAL:
+${style}, cinematic seperti adegan film profesional, sangat realistis, detail wajah natural, tekstur lingkungan realistis, realistic skin texture, cinematic lighting, natural shadows, depth of field.
 
 KAMERA:
-${camera}, pergerakan kamera halus dan sinematik.
+${camera}, smooth camera movement, realistic motion, cinematic composition.
 
-DETAIL:
-Gerakan karakter natural, ekspresi emosional, lingkungan hidup dan realistis, depth of field, cinematic lighting, realistic shadows, high detail, smooth motion, professional filmmaking.
+KONSISTENSI:
+Pertahankan wajah, usia, rambut, pakaian, proporsi tubuh, lokasi, waktu dan suasana karakter agar konsisten dengan adegan sebelumnya.
 
-JAGA KONSISTENSI:
-Karakter, pakaian, wajah, lokasi dan suasana harus konsisten sepanjang adegan.
+RASIO:
+${ratio}
 
-HASIL:
-Video terlihat seperti rekaman film nyata, bukan seperti video AI.`;
+DURASI:
+${duration}
 
-    document.getElementById("result").textContent=prompt;
+AUDIO:
+Natural ambient sound sesuai lokasi, suara langkah, angin, kendaraan atau lingkungan. Dialog hanya jika diperlukan.
+
+NEGATIVE:
+cartoon, distorted face, extra fingers, extra limbs, duplicate character, blurry face, bad anatomy, unnatural movement, changing clothes, changing face.
+
+`;
+
+    });
+
+    document.getElementById("result").textContent=output;
     document.getElementById("resultCard").style.display="block";
     document.getElementById("result").style.display="block";
 }
