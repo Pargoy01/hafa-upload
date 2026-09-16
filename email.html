@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Generator - HAFA TOOLS</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#f8fafc;
+    color:#0f172a;
+}
+
+.topbar{
+    height:64px;
+    background:#ffffff;
+    border-bottom:1px solid #e2e8f0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 32px;
+}
+
+.logo{
+    text-decoration:none;
+    color:#0f172a;
+    font-size:20px;
+    font-weight:800;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.back{
+    text-decoration:none;
+    color:#475569;
+    font-size:14px;
+    font-weight:600;
+}
+
+.main{
+    max-width:900px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.card{
+    background:#ffffff;
+    border:1px solid #e2e8f0;
+    border-radius:18px;
+    padding:32px;
+    box-shadow:0 10px 30px rgba(15,23,42,.06);
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.icon{
+    width:64px;
+    height:64px;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eff6ff;
+    border-radius:16px;
+    font-size:30px;
+}
+
+.header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.header p{
+    color:#64748b;
+    font-size:14px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:700;
+}
+
+select{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    background:#fff;
+    font-size:14px;
+    outline:none;
+}
+
+select:focus{
+    border-color:#2563eb;
+}
+
+.generate-btn{
+    width:100%;
+    border:0;
+    border-radius:10px;
+    padding:14px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.generate-btn:hover{
+    background:#1d4ed8;
+}
+
+#usageCounter{
+    text-align:center;
+    margin-top:12px;
+    font-size:13px;
+    color:#64748b;
+    font-weight:600;
+}
+
+.results{
+    margin-top:30px;
+}
+
+.results-title{
+    font-size:17px;
+    font-weight:800;
+    margin-bottom:14px;
+}
+
+.email-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px;
+    margin-bottom:10px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:10px;
+}
+
+.email{
+    word-break:break-all;
+    font-size:14px;
+    font-weight:600;
+    color:#334155;
+}
+
+.copy-small{
+    flex-shrink:0;
+    border:0;
+    background:#ffffff;
+    border:1px solid #cbd5e1;
+    color:#2563eb;
+    border-radius:8px;
+    padding:8px 12px;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.copy-small:hover{
+    background:#eff6ff;
+}
+
+.empty{
+    text-align:center;
+    color:#94a3b8;
+    padding:25px;
+    border:1px dashed #cbd5e1;
+    border-radius:10px;
+}
+
+.tip{
+    margin-top:24px;
+    padding:14px;
+    background:#f8fafc;
+    border-radius:10px;
+    color:#64748b;
+    font-size:12px;
+    line-height:1.6;
+}
+
+@media(max-width:600px){
+
+    .topbar{
+        padding:0 18px;
+    }
+
+    .main{
+        margin:25px auto;
+        padding:0 14px;
+    }
+
+    .card{
+        padding:22px 18px;
+    }
+
+    .header h1{
+        font-size:26px;
+    }
+
+    .email-item{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .copy-small{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+<a href="dashboard.html" class="logo">
+HAFA<span>TOOLS</span>
+</a>
+
+<a href="dashboard.html" class="back">
+← Dashboard
+</a>
+
+</header>
+
+<main class="main">
+
+<div class="card">
+
+<div class="header">
+
+<div class="icon">
+📧
+</div>
+
+<h1>Email Generator</h1>
+
+<p>
+Generate professional email address ideas for your projects.
+</p>
+
+</div>
+
+<div class="input-group">
+
+<label for="style">
+Email Style
+</label>
+
+<select id="style">
+
+<option value="professional">
+Professional
+</option>
+
+<option value="business">
+Business
+</option>
+
+<option value="creator">
+Creator
+</option>
+
+<option value="gaming">
+Gaming
+</option>
+
+<option value="random">
+Random
+</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label for="domain">
+Domain
+</label>
+
+<select id="domain">
+
+<option value="gmail.com">
+gmail.com
+</option>
+
+<option value="outlook.com">
+outlook.com
+</option>
+
+<option value="yahoo.com">
+yahoo.com
+</option>
+
+</select>
+
+</div>
+
+<button
+class="generate-btn"
+onclick="generateEmails()"
+>
+Generate Emails
+</button>
+
+<div id="usageCounter">
+Free Plan · 5/5 generations remaining today
+</div>
+
+<div class="results">
+
+<div class="results-title">
+Generated Emails
+</div>
+
+<div id="emailList">
+
+<div class="empty">
+Click "Generate Emails" to create email ideas.
+</div>
+
+</div>
+
+</div>
+
+<div class="tip">
+💡 Tip: These are generated email address ideas for naming and planning purposes. They do not create real inboxes.
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+function updateUsageCounter(){
+
+    const counter =
+        document.getElementById("usageCounter");
+
+    if(!counter) return;
+
+    try{
+
+        const userData =
+            JSON.parse(
+                localStorage.getItem("hafa_user") || "{}"
+            );
+
+        const plan =
+            String(
+                userData.plan || "Free"
+            ).trim().toLowerCase();
+
+        if(plan === "pro"){
+
+            counter.textContent =
+                "HAFA PRO · Unlimited generations";
+
+            counter.style.color =
+                "#16a34a";
+
+            return;
+        }
+
+        const today =
+            new Date()
+                .toISOString()
+                .slice(0,10);
+
+        const usage =
+            JSON.parse(
+                localStorage.getItem(
+                    "hafa_email_usage"
+                ) || "{}"
+            );
+
+        const count =
+            usage.date === today
+                ? (usage.count || 0)
+                : 0;
+
+        const remaining =
+            Math.max(0,5-count);
+
+        counter.textContent =
+            "Free Plan · " +
+            remaining +
+            "/5 generations remaining today";
+
+        counter.style.color =
+            remaining === 0
+                ? "#dc2626"
+                : "#64748b";
+
+    }catch(error){
+
+        console.error(
+            "Email counter error:",
+            error
+        );
+
+    }
+}
+
+
+function randomNumber(){
+
+    return Math.floor(
+        Math.random() * 9999
+    ) + 1;
+
+}
+
+
+function generateEmails(){
+
+    try{
+
+        const userData =
+            JSON.parse(
+                localStorage.getItem("hafa_user") || "{}"
+            );
+
+        const plan =
+            String(
+                userData.plan || "Free"
+            ).trim().toLowerCase();
+
+        if(plan !== "pro"){
+
+            const today =
+                new Date()
+                    .toISOString()
+                    .slice(0,10);
+
+            const key =
+                "hafa_email_usage";
+
+            const usage =
+                JSON.parse(
+                    localStorage.getItem(key) || "{}"
+                );
+
+            if(usage.date !== today){
+
+                usage.date = today;
+                usage.count = 0;
+
+            }
+
+            if((usage.count || 0) >= 5){
+
+                alert(
+                    "Batas Free Plan sudah mencapai 5 generate email hari ini. Upgrade ke HAFA PRO untuk generate tanpa batas."
+                );
+
+                return;
+
+            }
+
+            usage.count =
+                (usage.count || 0) + 1;
+
+            localStorage.setItem(
+                key,
+                JSON.stringify(usage)
+            );
+
+        }
+
+        updateUsageCounter();
+
+
+        const style =
+            document.getElementById("style").value;
+
+        const domain =
+            document.getElementById("domain").value;
+
+        const emailList =
+            document.getElementById("emailList");
+
+        const generated =
+            new Set();
+
+
+        while(generated.size < 10){
+
+            let username;
+
+            if(style === "professional"){
+
+                const first = [
+                    "alex",
+                    "john",
+                    "david",
+                    "michael",
+                    "james",
+                    "daniel",
+                    "robert",
+                    "william"
+                ];
+
+                const last = [
+                    "smith",
+                    "miller",
+                    "walker",
+                    "parker",
+                    "anderson",
+                    "wilson",
+                    "brown",
+                    "taylor"
+                ];
+
+                username =
+                    first[
+                        Math.floor(
+                            Math.random()*first.length
+                        )
+                    ]
+                    +
+                    "."
+                    +
+                    last[
+                        Math.floor(
+                            Math.random()*last.length
+                        )
+                    ];
+
+            }
+
+            else if(style === "business"){
+
+                const words = [
+                    "office",
+                    "business",
+                    "company",
+                    "studio",
+                    "team",
+                    "agency",
+                    "official"
+                ];
+
+                username =
+                    words[
+                        Math.floor(
+                            Math.random()*words.length
+                        )
+                    ]
+                    +
+                    randomNumber();
+
+            }
+
+            else if(style === "creator"){
+
+                const words = [
+                    "creator",
+                    "media",
+                    "digital",
+                    "creative",
+                    "content",
+                    "official",
+                    "studio"
+                ];
+
+                username =
+                    words[
+                        Math.floor(
+                            Math.random()*words.length
+                        )
+                    ]
+                    +
+                    randomNumber();
+
+            }
+
+            else if(style === "gaming"){
+
+                const words = [
+                    "shadow",
+                    "phantom",
+                    "dragon",
+                    "hunter",
+                    "legend",
+                    "warrior",
+                    "gaming"
+                ];
+
+                username =
+                    words[
+                        Math.floor(
+                            Math.random()*words.length
+                        )
+                    ]
+                    +
+                    randomNumber();
+
+            }
+
+            else{
+
+                const words = [
+                    "nova",
+                    "pixel",
+                    "orbit",
+                    "cloud",
+                    "spark",
+                    "vision",
+                    "wave",
+                    "future"
+                ];
+
+                username =
+                    words[
+                        Math.floor(
+                            Math.random()*words.length
+                        )
+                    ]
+                    +
+                    randomNumber();
+
+            }
+
+            generated.add(
+                username.toLowerCase()
+            );
+
+        }
+
+
+        emailList.innerHTML = "";
+
+
+        generated.forEach(
+            function(username){
+
+                const item =
+                    document.createElement("div");
+
+                item.className =
+                    "email-item";
+
+
+                const email =
+                    document.createElement("div");
+
+                email.className =
+                    "email";
+
+                email.textContent =
+                    username +
+                    "@" +
+                    domain;
+
+
+                const button =
+                    document.createElement("button");
+
+                button.className =
+                    "copy-small";
+
+                button.textContent =
+                    "Copy";
+
+
+                button.onclick =
+                    function(){
+
+                        copyEmail(
+                            email.textContent,
+                            button
+                        );
+
+                    };
+
+
+                item.appendChild(email);
+                item.appendChild(button);
+
+                emailList.appendChild(item);
+
+            }
+        );
+
+
+        try{
+
+            let history =
+                JSON.parse(
+                    localStorage.getItem(
+                        "hafa_history"
+                    ) || "[]"
+                );
+
+            history.unshift({
+
+                id:Date.now(),
+
+                type:"Email",
+
+                icon:"📧",
+
+                title:"Email Generator",
+
+                content:
+                    Array.from(generated)
+                    .map(function(username){
+
+                        return username +
+                            "@" +
+                            domain;
+
+                    })
+                    .join("\n"),
+
+                date:
+                    new Date().toISOString()
+
+            });
+
+            history =
+                history.slice(0,100);
+
+            localStorage.setItem(
+                "hafa_history",
+                JSON.stringify(history)
+            );
+
+        }catch(error){
+
+            console.error(
+                "Failed to save email history:",
+                error
+            );
+
+        }
+
+    }catch(error){
+
+        console.error(
+            "Email generation error:",
+            error
+        );
+
+        alert(
+            "Terjadi kesalahan saat membuat email."
+        );
+
+    }
+
+}
+
+
+async function copyEmail(
+    email,
+    button
+){
+
+    try{
+
+        await navigator.clipboard.writeText(
+            email
+        );
+
+        button.textContent =
+            "Copied!";
+
+        setTimeout(
+            function(){
+
+                button.textContent =
+                    "Copy";
+
+            },
+            1200
+        );
+
+    }catch(error){
+
+        console.error(
+            "Copy error:",
+            error
+        );
+
+    }
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    updateUsageCounter
+);
+
+</script>
+
+</body>
+</html>

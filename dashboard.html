@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard — HAFA TOOLS</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f7f9fc;
+    color:#0f172a;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:240px;
+    height:100vh;
+    background:#ffffff;
+    border-right:1px solid #e5eaf2;
+    padding:25px 18px;
+    display:flex;
+    flex-direction:column;
+    z-index:100;
+}
+
+.logo{
+    text-decoration:none;
+    font-size:22px;
+    font-weight:800;
+    color:#111827;
+    padding:5px 12px 30px;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.menu-title{
+    font-size:11px;
+    font-weight:800;
+    color:#94a3b8;
+    letter-spacing:1px;
+    padding:0 12px;
+    margin-bottom:10px;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#64748b;
+    padding:12px;
+    border-radius:9px;
+    font-size:14px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:#eff6ff;
+    color:#2563eb;
+}
+
+.sidebar-bottom{
+    margin-top:auto;
+}
+
+.logout{
+    width:100%;
+    border:none;
+    background:#f8fafc;
+    color:#64748b;
+    padding:12px;
+    border-radius:9px;
+    font-weight:700;
+    cursor:pointer;
+    text-align:left;
+}
+
+.logout:hover{
+    background:#fef2f2;
+    color:#dc2626;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:240px;
+    min-height:100vh;
+}
+
+/* TOPBAR */
+
+.topbar{
+    height:72px;
+    background:white;
+    border-bottom:1px solid #e5eaf2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px;
+}
+
+.topbar-title{
+    font-size:15px;
+    font-weight:700;
+}
+
+.user{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:14px;
+}
+
+.user-name{
+    font-size:13px;
+    font-weight:700;
+}
+
+/* CONTENT */
+
+.content{
+    padding:35px;
+    max-width:1300px;
+}
+
+.welcome{
+    margin-bottom:30px;
+}
+
+.welcome h1{
+    font-size:30px;
+    letter-spacing:-1px;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#64748b;
+    font-size:14px;
+}
+
+/* QUICK STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:35px;
+}
+
+.stat{
+    background:white;
+    border:1px solid #e5eaf2;
+    border-radius:15px;
+    padding:22px;
+}
+
+.stat-icon{
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.stat-number{
+    font-size:25px;
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.stat-label{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+/* TOOLS */
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.section-header h2{
+    font-size:20px;
+}
+
+.section-header span{
+    color:#64748b;
+    font-size:13px;
+}
+
+.tools-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.tool-card{
+    background:white;
+    border:1px solid #e5eaf2;
+    border-radius:16px;
+    padding:24px;
+    text-decoration:none;
+    color:#0f172a;
+    transition:.2s;
+}
+
+.tool-card:hover{
+    transform:translateY(-4px);
+    border-color:#bfdbfe;
+    box-shadow:0 15px 35px rgba(15,23,42,.07);
+}
+
+.tool-icon{
+    width:48px;
+    height:48px;
+    border-radius:13px;
+    background:#eff6ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    margin-bottom:17px;
+}
+
+.tool-card h3{
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.tool-card p{
+    color:#64748b;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.tool-arrow{
+    margin-top:18px;
+    color:#2563eb;
+    font-size:13px;
+    font-weight:700;
+}
+
+/* MOBILE */
+
+.mobile-menu{
+    display:none;
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:210px;
+    }
+
+    .main{
+        margin-left:210px;
+    }
+
+    .tools-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        border-right:none;
+        border-bottom:1px solid #e5eaf2;
+        padding:15px;
+    }
+
+    .logo{
+        padding:5px 5px 15px;
+    }
+
+    .menu{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .menu a{
+        justify-content:center;
+        padding:9px 5px;
+        font-size:11px;
+    }
+
+    .menu-title,
+    .sidebar-bottom{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .topbar{
+        padding:0 20px;
+    }
+
+    .content{
+        padding:25px 20px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .tools-grid{
+        grid-template-columns:1fr;
+    }
+
+    .user-name{
+        display:none;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<a href="dashboard.html" class="logo">
+HAFA<span>TOOLS</span>
+</a>
+
+
+<div class="menu-title">
+MENU
+</div>
+
+
+<nav class="menu">
+
+<a href="dashboard.html" class="active">
+🏠
+Dashboard
+</a>
+
+<a href="#tools">
+🛠️
+Tools
+</a>
+
+<a href="history.html">
+📜
+History
+</a>
+
+<a href="pricing.html">
+💳
+Pricing
+</a>
+
+<a href="profile.html">
+👤
+Profile
+</a>
+
+</nav>
+
+
+<div class="sidebar-bottom">
+
+<button class="logout" onclick="logout()">
+↪ Logout
+</button>
+
+</div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+<div class="topbar-title">
+Dashboard
+</div>
+
+
+<div class="user">
+
+<div class="avatar" id="avatar">
+H
+</div>
+
+<div>
+    <div class="user-name" id="userName">
+        User
+    </div>
+    <div id="planBadge" style="font-size:11px;font-weight:700;color:#2563eb;margin-top:2px;">
+        FREE PLAN
+    </div>
+</div>
+
+</div>
+
+</header>
+
+
+<!-- CONTENT -->
+
+<section class="content">
+
+
+<div class="welcome">
+
+<h1 id="welcomeText">
+Welcome back 👋
+</h1>
+
+<p>
+Choose a tool below and simplify your digital workflow.
+</p>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+
+<div class="stat">
+
+<div class="stat-icon">
+🛠️
+</div>
+
+<div class="stat-number">
+7
+</div>
+
+<div class="stat-label">
+Available Tools
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+⚡
+</div>
+
+<div class="stat-number" id="currentPlan">
+Free
+</div>
+
+<div class="stat-label">
+Current Plan
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+✨
+</div>
+
+<div class="stat-number" id="toolsUsed">
+0
+</div>
+
+<div class="stat-label">
+Tools Used
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- TOOLS -->
+
+<div class="section-header" id="tools">
+
+<h2>
+Your Tools
+</h2>
+
+<span>
+Choose a tool to get started
+</span>
+
+</div>
+
+
+<div class="tools-grid">
+
+
+<a href="tempmail.html" class="tool-card">
+
+<div class="tool-icon">
+📧
+</div>
+
+<h3>
+Temporary Email
+</h3>
+
+<p>
+Create a temporary inbox for legitimate testing and development.
+</p>
+
+<div class="tool-arrow">
+Open Tool →
+</div>
+
+</a>
+
+<a href="email.html" class="tool-card">
+
+<div class="tool-icon">
+📨
+</div>
+
+<h3>
+Email Generator
+</h3>
+
+<p>
+Generate professional email address ideas quickly.
+</p>
+
+<div class="tool-arrow">
+Open Tool →
+</div>
+
+</a>
+
+<a href="password.html" class="tool-card">
+
+<div class="tool-icon">
+🔐
+</div>
+
+<h3>
+Password Generator
+</h3>
+
+<p>
+Generate strong random passwords quickly and securely.
+</p>
+
+<div class="tool-arrow">
+Open Tool →
+</div>
+
+</a>
+
+<a href="username.html" class="tool-card">
+
+<div class="tool-icon">
+👤
+</div>
+
+<h3>
+Username Generator
+</h3>
+
+<p>
+Generate creative username ideas for your projects.
+</p>
+
+<div class="tool-arrow">
+Open Tool →
+</div>
+
+</a>
+
+
+<a href="ai-prompt.html" class="tool-card">
+
+<div class="tool-icon">
+🤖
+</div>
+
+<h3>
+AI Prompt Generator
+</h3>
+
+<p>
+Create useful prompts for AI image and video generation.
+</p>
+
+<div class="tool-arrow">
+Open Tool →
+</div>
+
+</a>
+
+
+<a href="thumbnail.html" class="tool-card">
+
+<div class="tool-icon">
+🖼️
+</div>
+
+<h3>
+Thumbnail Prompt
+</h3>
+
+<p>
+Create cinematic concepts for thumbnails and content.
+</p>
+
+<div class="tool-arrow">
+Open Tool →
+</div>
+
+</a>
+
+
+<a href="caption.html" class="tool-card">
+
+<div class="tool-icon">
+📝
+</div>
+
+<h3>
+Caption Generator
+</h3>
+
+<p>
+Create engaging captions for social media content.
+</p>
+
+<div class="tool-arrow">
+Open Tool →
+</div>
+
+</a>
+
+
+</div>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* GET USER */
+
+const userData = localStorage.getItem("hafa_user");
+
+// Default plan untuk pengguna baru
+if(userData){
+    try{
+        const currentUser = JSON.parse(userData);
+        if(!currentUser.plan){
+            currentUser.plan = "Free";
+            localStorage.setItem("hafa_user", JSON.stringify(currentUser));
+        }
+    }catch(error){
+        console.error("Plan setup error:", error);
+    }
+}
+
+
+if(!userData){
+
+    window.location.href = "login.html";
+
+}
+
+
+let user;
+
+try{
+
+    user = JSON.parse(userData);
+
+}catch(error){
+
+    localStorage.removeItem("hafa_user");
+
+    window.location.href = "login.html";
+
+}
+
+
+/* USER DISPLAY */
+
+if(user){
+
+    const name = user.name || "User";
+
+    document.getElementById("welcomeText").textContent =
+        "Welcome back, " + name + " 👋";
+
+    document.getElementById("userName").textContent =
+        name;
+
+    const firstLetter =
+        name.charAt(0).toUpperCase();
+
+    document.getElementById("avatar").textContent =
+        firstLetter;
+
+}
+
+
+/* LOGOUT */
+
+function updateCurrentPlan(){
+    const planElement = document.getElementById("currentPlan");
+    if(!planElement) return;
+
+    try{
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+        const plan = userData.plan || "Free";
+
+        if(plan === "Pro"){
+            planElement.textContent = "HAFA PRO";
+        }else{
+            planElement.textContent = "Free";
+        }
+    }catch(error){
+        console.error("Current plan error:", error);
+    }
+}
+
+updateCurrentPlan();
+
+function updatePlanBadge(){
+    const badge = document.getElementById("planBadge");
+    if(!badge) return;
+
+    try{
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+        const plan = userData.plan || "Free";
+
+        if(plan === "Pro"){
+            badge.textContent = "HAFA PRO";
+            badge.style.color = "#16a34a";
+        }else{
+            badge.textContent = "FREE PLAN";
+            badge.style.color = "#2563eb";
+        }
+    }catch(error){
+        console.error("Plan badge error:", error);
+    }
+}
+
+updatePlanBadge();
+
+function logout(){
+
+    localStorage.removeItem("hafa_user");
+
+    window.location.href = "login.html";
+
+}
+
+</script>
+
+<script>
+function updateToolsUsed(){
+    const toolsUsed = document.getElementById("toolsUsed");
+    if(!toolsUsed) return;
+
+    try{
+        const count = parseInt(
+            localStorage.getItem("hafa_tools_used") || "0",
+            10
+        );
+
+        toolsUsed.textContent = count;
+    }catch(error){
+        console.error("Tools Used error:", error);
+    }
+}
+
+updateToolsUsed();
+</script>
+</body>
+</html>

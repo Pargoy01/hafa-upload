@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HAFA TOOLS — Smart Digital Tools</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f7f9fc;
+    color:#0f172a;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:72px;
+    background:rgba(255,255,255,.92);
+    border-bottom:1px solid #e8edf5;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+    display:flex;
+    align-items:baseline;
+    gap:5px;
+    text-decoration:none;
+    letter-spacing:-1px;
+}
+
+.logo-main{
+    font-size:23px;
+    font-weight:800;
+    color:#0f172a;
+    letter-spacing:-1.5px;
+}
+
+.logo-sub{
+    font-size:14px;
+    font-weight:600;
+    color:#2563eb;
+    letter-spacing:1px;
+    text-transform:lowercase;
+}
+.nav-menu{
+    display:flex;
+    align-items:center;
+    gap:32px;
+}
+
+.nav-menu a{
+    text-decoration:none;
+    color:#64748b;
+    font-size:14px;
+    font-weight:600;
+}
+
+.nav-menu a:hover{
+    color:#2563eb;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.btn-login{
+    padding:10px 18px;
+    border-radius:9px;
+    border:1px solid #dbe3ef;
+    background:white;
+    color:#334155;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+}
+
+.btn-start{
+    padding:10px 18px;
+    border-radius:9px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(37,99,235,.2);
+}
+
+/* HERO */
+
+.hero{
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:90px 20px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:rgba(37,99,235,.08);
+    border-radius:50%;
+    filter:blur(80px);
+    top:-250px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.hero-content{
+    max-width:850px;
+    position:relative;
+    z-index:2;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 14px;
+    border-radius:50px;
+    background:#eff6ff;
+    color:#2563eb;
+    border:1px solid #dbeafe;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:clamp(44px,7vw,78px);
+    line-height:1.05;
+    letter-spacing:-3px;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#2563eb;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.7;
+    color:#64748b;
+}
+
+.hero-buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.hero-primary{
+    padding:15px 26px;
+    border-radius:11px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+    box-shadow:0 15px 30px rgba(37,99,235,.22);
+}
+
+.hero-secondary{
+    padding:15px 26px;
+    border-radius:11px;
+    background:white;
+    color:#334155;
+    border:1px solid #dbe3ef;
+    text-decoration:none;
+    font-weight:700;
+}
+
+/* TOOLS PREVIEW */
+
+.tools{
+    padding:90px 7%;
+    background:white;
+}
+
+.section-title{
+    text-align:center;
+    max-width:650px;
+    margin:auto;
+}
+
+.section-title small{
+    color:#2563eb;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.section-title h2{
+    font-size:42px;
+    margin:12px 0;
+}
+
+.section-title p{
+    color:#64748b;
+    line-height:1.7;
+}
+
+.tool-grid{
+    max-width:1100px;
+    margin:50px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.tool-card{
+    padding:30px;
+    border:1px solid #e5eaf2;
+    border-radius:18px;
+    background:white;
+    transition:.25s;
+}
+
+.tool-card:hover{
+    transform:translateY(-6px);
+    border-color:#bfdbfe;
+    box-shadow:0 20px 45px rgba(15,23,42,.08);
+}
+
+.tool-icon{
+    width:52px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:14px;
+    background:#eff6ff;
+    font-size:25px;
+    margin-bottom:20px;
+}
+
+.tool-card h3{
+    font-size:19px;
+    margin-bottom:10px;
+}
+
+.tool-card p{
+    color:#64748b;
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* CTA */
+
+.cta{
+    padding:100px 20px;
+    background:#f7f9fc;
+    text-align:center;
+}
+
+.cta-box{
+    max-width:900px;
+    margin:auto;
+    padding:65px 30px;
+    border-radius:25px;
+    background:#0f172a;
+    color:white;
+    position:relative;
+    overflow:hidden;
+}
+
+.cta-box::before{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    background:rgba(37,99,235,.35);
+    filter:blur(80px);
+    border-radius:50%;
+    top:-180px;
+    right:-100px;
+}
+
+.cta-box h2{
+    position:relative;
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.cta-box p{
+    position:relative;
+    color:#94a3b8;
+    margin-bottom:30px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:35px 7%;
+    background:white;
+    border-top:1px solid #e8edf5;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+footer p{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+.footer-logo{
+    font-weight:800;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .nav-menu{
+        display:none;
+    }
+
+    .navbar{
+        padding:0 20px;
+    }
+
+    .hero{
+        min-height:580px;
+        padding:70px 20px;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .tool-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section-title h2{
+        font-size:32px;
+    }
+
+    .cta-box h2{
+        font-size:30px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:10px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<a href="#" class="logo">
+<span class="logo-main">HAFA</span><span class="logo-sub">tools</span>
+</a>
+
+<div class="nav-menu">
+<a href="#">Home</a>
+<a href="#tools">Tools</a>
+<a href="#pricing">Pricing</a>
+<a href="#about">About</a>
+</div>
+
+<div class="nav-buttons">
+<a href="login.html" class="btn-login">Login</a>
+<a href="login.html" class="btn-start">Get Started</a>
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+✦ Smart Digital Tools
+</div>
+
+<h1>
+Powerful Tools.<br>
+<span>Simple Workflow.</span>
+</h1>
+
+<p>
+HAFA TOOLS brings useful digital tools into one simple platform.
+Generate, create, and simplify your everyday digital work.
+</p>
+
+<div class="hero-buttons">
+
+<a href="login.html" class="hero-primary">
+Get Started →
+</a>
+
+<a href="#tools" class="hero-secondary">
+Explore Tools
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOOLS -->
+
+<section class="tools" id="tools">
+
+<div class="section-title">
+
+<small>OUR PLATFORM</small>
+
+<h2>Everything You Need</h2>
+
+<p>
+A collection of smart tools designed to make your digital workflow faster and easier.
+</p>
+
+</div>
+
+
+<div class="tool-grid">
+
+
+<div class="tool-card">
+
+<div class="tool-icon">
+📧
+</div>
+
+<h3>Email Generator</h3>
+
+<p>
+Generate email ideas quickly for testing and development.
+</p>
+
+</div>
+
+
+<div class="tool-card">
+
+<div class="tool-icon">
+🔐
+</div>
+
+<h3>Password Generator</h3>
+
+<p>
+Create strong and secure random passwords in seconds.
+</p>
+
+</div>
+
+
+<div class="tool-card">
+
+<div class="tool-icon">
+👤
+</div>
+
+<h3>Username Generator</h3>
+
+<p>
+Find creative username ideas for your digital projects.
+</p>
+
+</div>
+
+
+<div class="tool-card">
+
+<div class="tool-icon">
+🤖
+</div>
+
+<h3>AI Prompt Generator</h3>
+
+<p>
+Create better prompts for AI image and video generation.
+</p>
+
+</div>
+
+
+<div class="tool-card">
+
+<div class="tool-icon">
+🖼️
+</div>
+
+<h3>Thumbnail Prompt</h3>
+
+<p>
+Generate cinematic thumbnail concepts for your content.
+</p>
+
+</div>
+
+
+<div class="tool-card">
+
+<div class="tool-icon">
+📬
+</div>
+
+<h3>Temporary Email</h3>
+
+<p>
+Temporary inbox for legitimate testing and development purposes.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+<div class="cta-box">
+
+<h2>
+Ready to create?
+</h2>
+
+<p>
+Join HAFA TOOLS and access your digital toolbox.
+</p>
+
+<a href="login.html" class="hero-primary">
+Create Your Account →
+</a>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-logo">
+HAFA<span style="color:#2563eb;">TOOLS</span>
+</div>
+
+<p>
+© 2026 HAFA TOOLS. All rights reserved.
+</p>
+
+</footer>
+
+</body>
+</html>

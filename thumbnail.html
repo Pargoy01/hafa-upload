@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Thumbnail Prompt Generator - HAFA TOOLS</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+    color:#0f172a;
+}
+
+.header{
+    height:70px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    text-decoration:none;
+    display:flex;
+    align-items:baseline;
+    gap:5px;
+}
+
+.logo-main{
+    font-size:23px;
+    font-weight:800;
+    color:#0f172a;
+}
+
+.logo-sub{
+    font-size:14px;
+    font-weight:600;
+    color:#2563eb;
+}
+
+.back{
+    text-decoration:none;
+    color:#475569;
+    font-size:14px;
+    font-weight:600;
+}
+
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.hero{
+    margin-bottom:28px;
+}
+
+.hero h1{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#64748b;
+    font-size:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+}
+
+.card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 8px 30px rgba(15,23,42,.05);
+}
+
+.card h2{
+    font-size:19px;
+    margin-bottom:20px;
+}
+
+.field{
+    margin-bottom:17px;
+}
+
+label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    border:1px solid #dbe2ea;
+    border-radius:10px;
+    padding:12px 13px;
+    font-size:14px;
+    outline:none;
+    background:#fff;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.08);
+}
+
+textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+button{
+    border:0;
+    border-radius:10px;
+    padding:13px 18px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.primary{
+    width:100%;
+    background:#2563eb;
+    color:white;
+}
+
+.primary:hover{
+    background:#1d4ed8;
+}
+
+.secondary{
+    background:#eff6ff;
+    color:#2563eb;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.output{
+    min-height:310px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:18px;
+    white-space:pre-wrap;
+    line-height:1.65;
+    font-size:14px;
+    color:#334155;
+}
+
+.empty{
+    color:#94a3b8;
+    text-align:center;
+    padding-top:90px;
+}
+
+.tip{
+    margin-top:18px;
+    padding:14px;
+    background:#eff6ff;
+    border-radius:10px;
+    color:#1e40af;
+    font-size:13px;
+    line-height:1.6;
+}
+
+@media(max-width:800px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .header{
+        padding:0 18px;
+    }
+
+    .container{
+        margin:25px auto;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+}
+
+@media(max-width:500px){
+    .row{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        padding:19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+<a href="dashboard.html" class="logo">
+<span class="logo-main">HAFA</span>
+<span class="logo-sub">tools</span>
+</a>
+
+<a href="dashboard.html" class="back">
+← Back to Dashboard
+</a>
+
+</header>
+
+<main class="container">
+
+<section class="hero">
+
+<h1>Thumbnail Prompt Generator</h1>
+
+<p>
+Create cinematic, realistic and eye-catching AI thumbnail prompts for YouTube, Facebook Reels and other content.
+</p>
+
+</section>
+
+<div class="grid">
+
+<div class="card">
+
+<h2>Thumbnail Settings</h2>
+
+<div class="field">
+<label>Video / Content Title</label>
+
+<input
+id="title"
+type="text"
+placeholder="Example: SOLO CAMPING IN THE FOREST">
+</div>
+
+<div class="field">
+<label>Main Subject</label>
+
+<input
+id="subject"
+type="text"
+placeholder="Example: a young man camping alone">
+</div>
+
+<div class="field">
+<label>Location</label>
+
+<input
+id="location"
+type="text"
+placeholder="Example: beautiful tropical forest">
+</div>
+
+<div class="row">
+
+<div class="field">
+<label>Visual Style</label>
+
+<select id="style">
+
+<option>Cinematic</option>
+<option>Ultra Realistic</option>
+<option>Photorealistic</option>
+<option>Movie Poster</option>
+<option>Documentary</option>
+<option>Viral YouTube Thumbnail</option>
+<option>Fantasy</option>
+<option>Vintage Film</option>
+
+</select>
+</div>
+
+<div class="field">
+<label>Mood</label>
+
+<select id="mood">
+
+<option>Dramatic</option>
+<option>Emotional</option>
+<option>Mysterious</option>
+<option>Epic</option>
+<option>Romantic</option>
+<option>Peaceful</option>
+<option>Dark</option>
+<option>Energetic</option>
+
+</select>
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="field">
+<label>Camera</label>
+
+<select id="camera">
+
+<option>Medium shot</option>
+<option>Close-up</option>
+<option>Wide shot</option>
+<option>Low angle</option>
+<option>High angle</option>
+<option>Drone aerial shot</option>
+<option>Dynamic tracking shot</option>
+
+</select>
+</div>
+
+<div class="field">
+<label>Lighting</label>
+
+<select id="lighting">
+
+<option>Dramatic cinematic lighting</option>
+<option>Soft natural light</option>
+<option>Golden hour</option>
+<option>Sunrise</option>
+<option>Sunset</option>
+<option>Bright daylight</option>
+<option>Night ambient lighting</option>
+<option>Neon lighting</option>
+
+</select>
+</div>
+
+</div>
+
+<div class="field">
+
+<label>Thumbnail Text</label>
+
+<input
+id="thumbnailText"
+type="text"
+placeholder="Example: SOLO CAMPING">
+</div>
+
+<div class="field">
+
+<label>Additional Details</label>
+
+<textarea
+id="details"
+placeholder="Example: campfire, tent, mountains, dramatic clouds, realistic facial expression"></textarea>
+
+</div>
+
+<button class="primary" onclick="generatePrompt()">
+✨ Generate Thumbnail Prompt
+</button>
+
+<div id="usageCounter" style="text-align:center;margin-top:12px;font-size:13px;color:#64748b;font-weight:600;">
+    Free Plan · 5/5 generations remaining today
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Generated Prompt</h2>
+
+<div id="output" class="output">
+
+<div class="empty">
+Your generated thumbnail prompt will appear here.
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="secondary" onclick="copyPrompt()">
+📋 Copy Prompt
+</button>
+
+<button class="secondary" onclick="generatePrompt()">
+🔄 Generate Again
+</button>
+
+</div>
+
+<div class="tip">
+
+<strong>Tip:</strong>
+For better results, describe the main subject clearly and add important visual elements such as facial expression, environment, lighting and composition.
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<script>
+
+let generatedPrompt = "";
+
+function value(id){
+
+    return document.getElementById(id).value.trim();
+
+}
+
+
+function updateUsageCounter(){
+    const counter = document.getElementById("usageCounter");
+    if(!counter) return;
+
+    try{
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+        const plan = userData.plan || "Free";
+
+        if(plan === "Pro"){
+            counter.textContent = "HAFA PRO · Unlimited generations";
+            counter.style.color = "#16a34a";
+            return;
+        }
+
+        const today = new Date().toISOString().slice(0, 10);
+        const usage = JSON.parse(localStorage.getItem("hafa_thumbnail_usage") || "{}");
+
+        let count = usage.date === today ? (usage.count || 0) : 0;
+        let remaining = Math.max(0, 5 - count);
+
+        counter.textContent = "Free Plan · " + remaining + "/5 generations remaining today";
+
+        if(remaining === 0){
+            counter.style.color = "#dc2626";
+        }else{
+            counter.style.color = "#64748b";
+        }
+    }catch(error){
+        console.error("Thumbnail counter error:", error);
+    }
+}
+
+function generatePrompt(){
+    // FREE PLAN LIMIT: 5 thumbnail generate per hari
+    try {
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+        const plan = userData.plan || "Free";
+        const today = new Date().toISOString().slice(0, 10);
+        const key = "hafa_thumbnail_usage";
+        const usage = JSON.parse(localStorage.getItem(key) || "{}");
+
+        if(plan !== "Pro"){
+            if(usage.date !== today){
+                usage.date = today;
+                usage.count = 0;
+            }
+
+            if((usage.count || 0) >= 5){
+                alert("Batas Free Plan sudah mencapai 5 generate thumbnail hari ini. Upgrade ke HAFA PRO untuk generate tanpa batas.");
+                return;
+            }
+
+            usage.count = (usage.count || 0) + 1;
+            localStorage.setItem(key, JSON.stringify(usage));
+            updateUsageCounter();
+        }
+    } catch(error) {
+        console.error("Thumbnail usage limit error:", error);
+    }
+
+
+    const title = value("title") || "Amazing Adventure";
+
+    const subject = value("subject") || "a realistic main character";
+
+    const location = value("location") || "a beautiful cinematic environment";
+
+    const style = value("style");
+
+    const mood = value("mood");
+
+    const camera = value("camera");
+
+    const lighting = value("lighting");
+
+    const thumbnailText = value("thumbnailText");
+
+    const details = value("details");
+
+
+    generatedPrompt = `Create a ${style.toLowerCase()} YouTube/Facebook thumbnail in a professional cinematic composition.
+
+MAIN SUBJECT:
+${subject}
+
+LOCATION:
+${location}
+
+MOOD:
+${mood}
+
+CAMERA:
+${camera}
+
+LIGHTING:
+${lighting}
+
+VISUAL QUALITY:
+Ultra realistic, highly detailed, realistic skin texture, natural facial expression, realistic anatomy, sharp focus, cinematic depth of field, professional photography, dramatic composition, high dynamic range, detailed environment.
+
+COMPOSITION:
+Place the main subject prominently in the frame with strong visual hierarchy. Make the subject immediately recognizable and emotionally engaging. Create depth between foreground, subject and background. Keep the composition clean and visually powerful.
+
+CONTENT TITLE:
+${title}
+
+${details ? "ADDITIONAL VISUAL DETAILS:\\n" + details : ""}
+
+THUMBNAIL TEXT:
+${thumbnailText || "No text required"}
+
+ASPECT RATIO:
+9:16 vertical
+
+IMPORTANT:
+Make the image look like a professionally produced viral content thumbnail, not a generic AI image. Strong focal point, cinematic storytelling, realistic lighting, natural colors, highly polished visual quality, attention-grabbing composition.`;
+
+    document.getElementById("output").textContent = generatedPrompt;
+
+    // Save generated thumbnail prompt to My History
+    try {
+        let history = JSON.parse(localStorage.getItem("hafa_history") || "[]");
+
+        history.unshift({
+            id: Date.now(),
+            type: "Thumbnail",
+            icon: "🖼️",
+            title: "Thumbnail",
+            content: generatedPrompt,
+            date: new Date().toISOString()
+        });
+
+        history = history.slice(0, 100);
+        localStorage.setItem("hafa_history", JSON.stringify(history));
+    } catch(error) {
+        console.error("Failed to save history:", error);
+    }
+
+}
+
+
+async function copyPrompt(){
+
+    if(!generatedPrompt){
+
+        alert("Generate a prompt terlebih dahulu.");
+
+        return;
+
+    }
+
+    try{
+
+        await navigator.clipboard.writeText(generatedPrompt);
+
+        alert("Prompt berhasil disalin!");
+
+    }catch(error){
+
+        alert("Gagal menyalin prompt.");
+
+    }
+
+}
+
+document.addEventListener('DOMContentLoaded', updateUsageCounter);
+</script>
+
+</body>
+</html>

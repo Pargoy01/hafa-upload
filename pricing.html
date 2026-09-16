@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing - HAFA TOOLS</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f8fafc;
+    color:#0f172a;
+}
+
+.navbar{
+    height:70px;
+    background:white;
+    border-bottom:1px solid #e2e8f0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+}
+
+.logo{
+    text-decoration:none;
+    display:flex;
+    align-items:baseline;
+    gap:5px;
+}
+
+.logo-main{
+    font-size:23px;
+    font-weight:800;
+    color:#0f172a;
+}
+
+.logo-sub{
+    font-size:14px;
+    font-weight:600;
+    color:#2563eb;
+    letter-spacing:1px;
+}
+
+.back{
+    text-decoration:none;
+    color:#475569;
+    font-size:14px;
+    font-weight:600;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:70px 20px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.badge{
+    display:inline-block;
+    background:#eff6ff;
+    color:#2563eb;
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:16px;
+}
+
+h1{
+    font-size:42px;
+    margin-bottom:14px;
+}
+
+.header p{
+    color:#64748b;
+    font-size:17px;
+}
+
+.pricing{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+    max-width:850px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(15,23,42,.06);
+    position:relative;
+}
+
+.card.pro{
+    border:2px solid #2563eb;
+    transform:translateY(-8px);
+}
+
+.popular{
+    position:absolute;
+    top:-14px;
+    right:25px;
+    background:#2563eb;
+    color:white;
+    padding:7px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.card h2{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:42px;
+    font-weight:800;
+    margin:20px 0 5px;
+}
+
+.price span{
+    font-size:15px;
+    color:#64748b;
+    font-weight:500;
+}
+
+.desc{
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.features{
+    list-style:none;
+    margin-bottom:30px;
+}
+
+.features li{
+    padding:10px 0;
+    color:#334155;
+    font-size:14px;
+}
+
+.features li::before{
+    content:"✓";
+    color:#2563eb;
+    font-weight:bold;
+    margin-right:10px;
+}
+
+.btn{
+    display:block;
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    text-align:center;
+    text-decoration:none;
+    font-weight:700;
+    border:1px solid #cbd5e1;
+    color:#0f172a;
+}
+
+.btn.pro-btn{
+    background:#2563eb;
+    color:white;
+    border-color:#2563eb;
+}
+
+.note{
+    text-align:center;
+    margin-top:35px;
+    color:#64748b;
+    font-size:13px;
+}
+
+@media(max-width:700px){
+    .navbar{
+        padding:0 20px;
+    }
+
+    .container{
+        padding:50px 16px;
+    }
+
+    h1{
+        font-size:32px;
+    }
+
+    .pricing{
+        grid-template-columns:1fr;
+    }
+
+    .card.pro{
+        transform:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a href="dashboard.html" class="logo">
+        <span class="logo-main">HAFA</span>
+        <span class="logo-sub">tools</span>
+    </a>
+
+    <a href="dashboard.html" class="back">← Dashboard</a>
+</nav>
+
+<main class="container">
+
+    <div class="header">
+        <div class="badge">SIMPLE & POWERFUL</div>
+        <h1>Choose Your Plan</h1>
+        <p>Start for free and upgrade when you need more powerful tools.</p>
+    </div>
+
+    <div class="pricing">
+
+        <div class="card">
+            <h2>Free</h2>
+
+            <div class="price">
+                $0 <span>/ forever</span>
+            </div>
+
+            <p class="desc">
+                Perfect for trying HAFA TOOLS.
+            </p>
+
+            <ul class="features">
+                <li>Basic AI Prompt Generator</li>
+                <li>Username Generator</li>
+                <li>Password Generator</li>
+                <li>Caption Generator</li>
+                <li>Thumbnail Prompt</li>
+                <li>Basic History</li>
+            </ul>
+
+            <a href="dashboard.html" class="btn">
+                Current Plan
+            </a>
+        </div>
+
+
+        <div class="card pro">
+
+            <div class="popular">
+                MOST POPULAR
+            </div>
+
+            <h2>HAFA PRO</h2>
+
+            <div class="price">
+                $5 <span>/ month</span>
+            </div>
+
+            <p class="desc">
+                For serious creators and power users.
+            </p>
+
+            <ul class="features">
+                <li>Unlimited Generation</li>
+                <li>All HAFA TOOLS</li>
+                <li>Advanced AI Prompts</li>
+                <li>Unlimited History</li>
+                <li>Batch Generation</li>
+                <li>TXT / CSV Export</li>
+                <li>No Ads</li>
+                <li>Priority Features</li>
+            </ul>
+
+            <a href="#" class="btn pro-btn" onclick="upgradeToPro();return false;">
+                Upgrade to Pro
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="note">
+        🔒 Secure account system · Cancel anytime · More features coming soon
+    </div>
+
+</main>
+
+<script>
+function upgrade(){
+    alert("HAFA PRO payment system akan segera tersedia.");
+}
+</script>
+
+
+<script>
+function upgradeToPro(){
+    try{
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+
+        if(!userData.email){
+            alert("Silakan login terlebih dahulu.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        fetch("https://hafa-tools-backend.vercel.app/api/auth/upgrade", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: userData.email
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                localStorage.setItem("hafa_user", JSON.stringify(data.user));
+                alert("🎉 HAFA PRO berhasil diaktifkan!");
+                window.location.href = "dashboard.html";
+            }else{
+                alert(data.message || "Gagal mengaktifkan HAFA PRO.");
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Tidak dapat terhubung ke server HAFA TOOLS.");
+        });
+
+    }catch(error){
+        console.error(error);
+        alert("Gagal mengaktifkan HAFA PRO.");
+    }
+}
+</script>
+\n</body>
+</html>

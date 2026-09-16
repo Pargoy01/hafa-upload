@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caption Generator - HAFA TOOLS</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+    color:#0f172a;
+}
+
+.header{
+    height:70px;
+    background:#fff;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+}
+
+.logo{
+    text-decoration:none;
+    display:flex;
+    align-items:baseline;
+    gap:5px;
+}
+
+.logo-main{
+    font-size:23px;
+    font-weight:800;
+    color:#0f172a;
+}
+
+.logo-sub{
+    font-size:14px;
+    font-weight:600;
+    color:#2563eb;
+}
+
+.back{
+    text-decoration:none;
+    color:#475569;
+    font-size:14px;
+    font-weight:600;
+}
+
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.hero{margin-bottom:28px}
+
+.hero h1{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#64748b;
+    font-size:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+}
+
+.card{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 8px 30px rgba(15,23,42,.05);
+}
+
+.card h2{
+    font-size:19px;
+    margin-bottom:20px;
+}
+
+.field{margin-bottom:17px}
+
+label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+input,textarea,select{
+    width:100%;
+    border:1px solid #dbe2ea;
+    border-radius:10px;
+    padding:12px 13px;
+    font-size:14px;
+    outline:none;
+    background:#fff;
+}
+
+input:focus,textarea:focus,select:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.08);
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+button{
+    border:0;
+    border-radius:10px;
+    padding:13px 18px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.primary{
+    width:100%;
+    background:#2563eb;
+    color:#fff;
+}
+
+.primary:hover{background:#1d4ed8}
+
+.secondary{
+    background:#eff6ff;
+    color:#2563eb;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.output{
+    min-height:360px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:18px;
+    white-space:pre-wrap;
+    line-height:1.65;
+    font-size:14px;
+    color:#334155;
+}
+
+.empty{
+    color:#94a3b8;
+    text-align:center;
+    padding-top:110px;
+}
+
+.tip{
+    margin-top:18px;
+    padding:14px;
+    background:#eff6ff;
+    border-radius:10px;
+    color:#1e40af;
+    font-size:13px;
+    line-height:1.6;
+}
+
+@media(max-width:800px){
+    .grid{grid-template-columns:1fr}
+    .header{padding:0 18px}
+    .container{margin:25px auto}
+    .hero h1{font-size:27px}
+}
+
+@media(max-width:500px){
+    .row{grid-template-columns:1fr}
+    .card{padding:19px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+<a href="dashboard.html" class="logo">
+<span class="logo-main">HAFA</span>
+<span class="logo-sub">tools</span>
+</a>
+
+<a href="dashboard.html" class="back">
+← Back to Dashboard
+</a>
+
+</header>
+
+<main class="container">
+
+<section class="hero">
+<h1>Caption Generator</h1>
+<p>Create engaging captions for Facebook, Instagram, TikTok and YouTube.</p>
+</section>
+
+<div class="grid">
+
+<div class="card">
+
+<h2>Caption Settings</h2>
+
+<div class="field">
+<label>Platform</label>
+<select id="platform">
+<option>Facebook</option>
+<option>Instagram</option>
+<option>TikTok</option>
+<option>YouTube</option>
+</select>
+</div>
+
+<div class="row">
+
+<div class="field">
+<label>Content Type</label>
+<select id="type">
+<option>Nature</option>
+<option>Camping</option>
+<option>Story</option>
+<option>Motivation</option>
+<option>AI Content</option>
+<option>Travel</option>
+<option>Food</option>
+<option>Promotion</option>
+<option>Entertainment</option>
+</select>
+</div>
+
+<div class="field">
+<label>Language</label>
+<select id="language">
+<option>English</option>
+<option>Indonesia</option>
+</select>
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="field">
+<label>Tone</label>
+<select id="tone">
+<option>Viral</option>
+<option>Professional</option>
+<option>Casual</option>
+<option>Emotional</option>
+<option>Inspirational</option>
+<option>Funny</option>
+<option>Cinematic</option>
+</select>
+</div>
+
+<div class="field">
+<label>Caption Length</label>
+<select id="length">
+<option>Short</option>
+<option>Medium</option>
+<option>Long</option>
+</select>
+</div>
+
+</div>
+
+<div class="field">
+<label>Topic / Keyword</label>
+<input id="topic" placeholder="Example: solo camping in a peaceful forest">
+</div>
+
+<div class="field">
+<label>Extra Details</label>
+<textarea id="details" placeholder="Example: campfire, quiet night, beautiful mountains, relaxing atmosphere"></textarea>
+</div>
+
+<button class="primary" onclick="generateCaption()">
+✨ Generate Caption
+</button>
+
+<div id="usageCounter" style="text-align:center;margin-top:12px;font-size:13px;color:#64748b;font-weight:600;">
+    Free Plan · 5/5 generations remaining today
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Generated Caption</h2>
+
+<div id="output" class="output">
+<div class="empty">
+Your caption will appear here.
+</div>
+</div>
+
+<div class="actions">
+
+<button class="secondary" onclick="copyCaption()">
+📋 Copy Caption
+</button>
+
+<button class="secondary" onclick="generateCaption()">
+🔄 Generate Again
+</button>
+
+</div>
+
+<div class="tip">
+<strong>Tip:</strong>
+Use a clear topic and add specific details. HAFA TOOLS will automatically create a caption with a hook, description, CTA and hashtags.
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+let generatedCaption = "";
+
+function get(id){
+    return document.getElementById(id).value.trim();
+}
+
+function updateUsageCounter(){
+    const counter = document.getElementById("usageCounter");
+    if(!counter) return;
+
+    try{
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+        const plan = String(userData.plan || "Free").trim().toLowerCase();
+
+        if(plan === "pro"){
+            counter.textContent = "HAFA PRO · Unlimited generations";
+            counter.style.color = "#16a34a";
+            return;
+        }
+
+        const today = new Date().toISOString().slice(0, 10);
+        const usage = JSON.parse(localStorage.getItem("hafa_caption_usage") || "{}");
+
+        let count = usage.date === today ? (usage.count || 0) : 0;
+        let remaining = Math.max(0, 5 - count);
+
+        counter.textContent = "Free Plan · " + remaining + "/5 generations remaining today";
+
+        if(remaining === 0){
+            counter.style.color = "#dc2626";
+        }else{
+            counter.style.color = "#64748b";
+        }
+    }catch(error){
+        console.error("Caption counter error:", error);
+    }
+}
+
+function generateCaption(){
+    // FREE PLAN LIMIT: 5 caption generate per hari
+    try {
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+        const plan = String(userData.plan || "Free").trim().toLowerCase();
+        const today = new Date().toISOString().slice(0, 10);
+        const key = "hafa_caption_usage";
+        const usage = JSON.parse(localStorage.getItem(key) || "{}");
+
+        if(plan !== "pro"){
+            if(usage.date !== today){
+                usage.date = today;
+                usage.count = 0;
+            }
+
+            if((usage.count || 0) >= 5){
+                alert("Batas Free Plan sudah mencapai 5 generate caption hari ini. Upgrade ke HAFA PRO untuk generate tanpa batas.");
+                return;
+            }
+
+            usage.count = (usage.count || 0) + 1;
+            localStorage.setItem(key, JSON.stringify(usage));
+            updateUsageCounter();
+        }
+    } catch(error) {
+        console.error("Caption usage limit error:", error);
+    }
+
+
+    const platform = get("platform");
+    const type = get("type");
+    const language = get("language");
+    const tone = get("tone");
+    const length = get("length");
+    const topic = get("topic") || "an amazing experience";
+    const details = get("details");
+
+    let caption = "";
+
+    if(language === "Indonesia"){
+
+        if(type === "Camping"){
+            caption =
+`🏕️ ${topic}
+
+Kadang kita hanya butuh pergi sejenak dari keramaian.
+
+Udara segar, suara alam, api unggun, dan malam yang tenang membuat semuanya terasa lebih sederhana. 🌲🔥
+
+${details}
+
+Kalau kamu punya kesempatan, mau camping di tempat seperti ini?
+
+Follow untuk petualangan berikutnya. 🏕️
+
+#Camping #SoloCamping #Alam #Nature #CampingLife #OutdoorAdventure #Healing #ExploreIndonesia`;
+        }
+
+        else if(type === "Nature"){
+            caption =
+`🌿 ${topic}
+
+Tidak semua keindahan harus ditemukan di tempat yang ramai.
+
+Terkadang alam yang sederhana justru memberikan ketenangan yang paling kita butuhkan. 🌲✨
+
+${details}
+
+Kalau kamu berada di sini, apa yang akan kamu lakukan?
+
+Follow untuk menikmati lebih banyak keindahan alam. 🌿
+
+#Nature #Alam #NatureLovers #Healing #ExploreNature #BeautifulNature #Relaxing`;
+        }
+
+        else{
+            caption =
+`✨ ${topic}
+
+Sebuah momen sederhana yang mungkin terlihat biasa, tetapi memiliki cerita tersendiri.
+
+${details}
+
+Menurut kamu, bagaimana dengan momen seperti ini?
+
+Jangan lupa follow untuk konten berikutnya. ❤️
+
+#ContentCreator #Viral #Inspirasi #Story #DailyLife #Explore`;
+        }
+
+    }else{
+
+        if(type === "Camping"){
+            caption =
+`🏕️ ${topic}
+
+Sometimes, all we need is to escape the noise for a while.
+
+Fresh air, peaceful nature, a warm campfire and a quiet night under the stars. 🌲🔥
+
+${details}
+
+Would you spend a night here?
+
+Follow for the next adventure. 🏕️
+
+#Camping #SoloCamping #ForestCamping #Nature #Campfire #OutdoorAdventure #NatureLovers #Relaxing #Explore`;
+        }
+
+        else if(type === "Nature"){
+            caption =
+`🌿 ${topic}
+
+Not every beautiful moment needs a crowded place.
+
+Sometimes, the quietest places give us the peace we have been looking for. 🌲✨
+
+${details}
+
+Would you visit a place like this?
+
+Follow for more peaceful moments in nature. 🌿
+
+#Nature #NatureLovers #BeautifulNature #Relaxing #Peaceful #ExploreNature #Outdoor`;
+        }
+
+        else if(type === "Motivation"){
+            caption =
+`🔥 ${topic}
+
+Keep going.
+
+Progress may feel slow, but every small step still takes you forward.
+
+${details}
+
+Your journey does not have to look like anyone else's.
+
+Keep moving. Keep believing. 💪
+
+#Motivation #Mindset #Success #Inspiration #KeepGoing #NeverGiveUp`;
+        }
+
+        else{
+            caption =
+`✨ ${topic}
+
+Sometimes the simplest moments become the most memorable ones.
+
+${details}
+
+What do you think about this moment?
+
+Follow for more content. ❤️
+
+#ContentCreator #ViralContent #Trending #Story #DailyContent #Explore`;
+        }
+
+    }
+
+    if(tone === "Professional"){
+        caption += `\n\n#ProfessionalContent #Creator`;
+    }
+
+    if(platform === "TikTok"){
+        caption += `\n#TikTok #FYP #ForYou`;
+    }
+
+    if(platform === "Instagram"){
+        caption += `\n#Instagram #Reels #ExplorePage`;
+    }
+
+    if(platform === "YouTube"){
+        caption += `\n#YouTube #Shorts #YouTubeShorts`;
+    }
+
+    generatedCaption = caption;
+
+    document.getElementById("output").textContent = caption;
+
+    // Save generated caption to My History
+    try {
+        let history = JSON.parse(localStorage.getItem("hafa_history") || "[]");
+
+        history.unshift({
+            id: Date.now(),
+            type: "Caption",
+            icon: "📝",
+            title: "Caption",
+            content: caption,
+            date: new Date().toISOString()
+        });
+
+        history = history.slice(0, 100);
+        localStorage.setItem("hafa_history", JSON.stringify(history));
+    } catch(error) {
+        console.error("Failed to save history:", error);
+    }
+}
+
+async function copyCaption(){
+
+    if(!generatedCaption){
+        alert("Generate caption terlebih dahulu.");
+        return;
+    }
+
+    try{
+        await navigator.clipboard.writeText(generatedCaption);
+        alert("Caption berhasil disalin!");
+    }catch(error){
+        alert("Gagal menyalin caption.");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", updateUsageCounter);
+</script>
+
+</body>
+</html>

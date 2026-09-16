@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Username Generator — HAFA TOOLS</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f7f9fc;
+    color:#0f172a;
+}
+
+.topbar{
+    height:72px;
+    background:white;
+    border-bottom:1px solid #e5eaf2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+}
+
+.logo{
+    text-decoration:none;
+    font-size:22px;
+    font-weight:800;
+    color:#111827;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.back{
+    text-decoration:none;
+    color:#64748b;
+    font-size:14px;
+    font-weight:700;
+}
+
+.back:hover{
+    color:#2563eb;
+}
+
+.main{
+    min-height:calc(100vh - 72px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:50px 20px;
+}
+
+.card{
+    width:100%;
+    max-width:650px;
+    background:white;
+    border:1px solid #e5eaf2;
+    border-radius:20px;
+    padding:38px;
+    box-shadow:0 25px 60px rgba(15,23,42,.07);
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.icon{
+    width:60px;
+    height:60px;
+    margin:0 auto 16px;
+    border-radius:16px;
+    background:#eff6ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.header h1{
+    font-size:30px;
+    margin-bottom:8px;
+    letter-spacing:-1px;
+}
+
+.header p{
+    color:#64748b;
+    font-size:14px;
+}
+
+.input-group{
+    margin-bottom:22px;
+}
+
+.input-group label{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:9px;
+}
+
+.input-group input,
+.input-group select{
+    width:100%;
+    padding:14px;
+    border:1px solid #dbe3ef;
+    border-radius:10px;
+    background:#f8fafc;
+    font-size:14px;
+    outline:none;
+}
+
+.input-group input:focus,
+.input-group select:focus{
+    border-color:#2563eb;
+    background:white;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.option{
+    border:1px solid #e5eaf2;
+    border-radius:11px;
+    padding:14px;
+}
+
+.option label{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:13px;
+    color:#475569;
+    cursor:pointer;
+}
+
+.option input{
+    accent-color:#2563eb;
+}
+
+.generate-btn{
+    width:100%;
+    border:none;
+    padding:15px;
+    border-radius:11px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(37,99,235,.2);
+}
+
+.generate-btn:hover{
+    background:#1d4ed8;
+}
+
+.results{
+    margin-top:28px;
+}
+
+.results-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.results-title h3{
+    font-size:15px;
+}
+
+.results-title span{
+    color:#64748b;
+    font-size:12px;
+}
+
+.username-list{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+.username-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:13px 14px;
+    border:1px solid #e5eaf2;
+    border-radius:10px;
+    background:#f8fafc;
+}
+
+.username{
+    font-family:monospace;
+    font-size:14px;
+    font-weight:700;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.copy-small{
+    flex-shrink:0;
+    border:1px solid #dbe3ef;
+    background:white;
+    color:#334155;
+    padding:7px 11px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.copy-small:hover{
+    color:#2563eb;
+    border-color:#bfdbfe;
+}
+
+.tip{
+    margin-top:24px;
+    padding:14px;
+    background:#f8fafc;
+    border-radius:10px;
+    color:#64748b;
+    font-size:12px;
+    line-height:1.6;
+}
+
+@media(max-width:500px){
+
+    .topbar{
+        padding:0 20px;
+    }
+
+    .card{
+        padding:25px 20px;
+    }
+
+    .header h1{
+        font-size:26px;
+    }
+
+    .options{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+<a href="dashboard.html" class="logo">
+HAFA<span>TOOLS</span>
+</a>
+
+<a href="dashboard.html" class="back">
+← Dashboard
+</a>
+
+</header>
+
+
+<main class="main">
+
+<div class="card">
+
+<div class="header">
+
+<div class="icon">
+👤
+</div>
+
+<h1>Username Generator</h1>
+
+<p>
+Generate creative username ideas for your digital projects.
+</p>
+
+</div>
+
+
+<div class="input-group">
+
+<label for="keyword">
+Keyword
+</label>
+
+<input
+type="text"
+id="keyword"
+placeholder="Example: Hafa, Gaming, Creator..."
+maxlength="20"
+>
+
+</div>
+
+
+<div class="input-group">
+
+<label for="style">
+Username Style
+</label>
+
+<select id="style">
+
+<option value="modern">
+Modern
+</option>
+
+<option value="gaming">
+Gaming
+</option>
+
+<option value="creator">
+Creator
+</option>
+
+<option value="minimal">
+Minimal
+</option>
+
+<option value="random">
+Random
+</option>
+
+</select>
+
+</div>
+
+
+<div class="options">
+
+<div class="option">
+
+<label>
+
+<input
+type="checkbox"
+id="numbers"
+checked
+>
+
+Add Numbers
+
+</label>
+
+</div>
+
+
+<div class="option">
+
+<label>
+
+<input
+type="checkbox"
+id="underscore"
+>
+
+Use Underscore
+
+</label>
+
+</div>
+
+</div>
+
+
+<button
+class="generate-btn"
+onclick="generateUsernames()"
+
+>
+Generate Usernames
+</button>
+
+<div id="usageCounter" style="text-align:center;margin-top:12px;font-size:13px;color:#64748b;font-weight:600;">
+    Free Plan · 5/5 generations remaining today
+</div>
+
+
+
+<div class="results">
+
+<div class="results-title">
+
+<h3>
+Generated Usernames
+</h3>
+
+<span>
+10 suggestions
+</span>
+
+</div>
+
+
+<div
+class="username-list"
+id="usernameList"
+>
+</div>
+
+</div>
+
+
+<div class="tip">
+
+💡 <strong>Tip:</strong>
+Use a short keyword that is easy to remember.
+You can generate new ideas anytime.
+
+</div>
+
+</div>
+
+</main>
+
+
+<script>
+
+const keywordInput =
+document.getElementById("keyword");
+
+const styleInput =
+document.getElementById("style");
+
+const numbersInput =
+document.getElementById("numbers");
+
+const underscoreInput =
+document.getElementById("underscore");
+
+const usernameList =
+document.getElementById("usernameList");
+
+
+const words = [
+"Nova",
+"Pixel",
+"Flow",
+"Vision",
+"Wave",
+"Spark",
+"Prime",
+"Zone",
+"Core",
+"Lab",
+"Hub",
+"Studio",
+"Pro",
+"Digital",
+"Create",
+"Media",
+"World",
+"Tech",
+"Cloud",
+"Vibe"
+];
+
+
+function randomItem(array){
+
+    return array[
+        Math.floor(
+            Math.random() * array.length
+        )
+    ];
+
+}
+
+
+function randomNumber(){
+
+    return Math.floor(
+        Math.random() * 9999
+    ) + 1;
+
+}
+
+
+function cleanWord(word){
+
+    return word
+        .trim()
+        .replace(/[^a-zA-Z0-9]/g,"");
+
+}
+
+
+function generateOne(keyword,style){
+
+    let base =
+        keyword ||
+        randomItem(words);
+
+    base = cleanWord(base);
+
+    const extra =
+        randomItem(words);
+
+    let username;
+
+
+    if(style === "modern"){
+
+        username =
+            base + extra;
+
+    }
+
+    else if(style === "gaming"){
+
+        username =
+            base + "X" + extra;
+
+    }
+
+    else if(style === "creator"){
+
+        username =
+            base + "Creator";
+
+    }
+
+    else if(style === "minimal"){
+
+        username =
+            base.toLowerCase();
+
+    }
+
+    else{
+
+        const patterns = [
+
+            base + extra,
+
+            extra + base,
+
+            base + "Hub",
+
+            base + "Zone",
+
+            "The" + base,
+
+            base + "Lab",
+
+            base + "Pro"
+
+        ];
+
+        username =
+            randomItem(patterns);
+
+    }
+
+
+    if(numbersInput.checked){
+
+        username +=
+            randomNumber();
+
+    }
+
+
+    if(underscoreInput.checked){
+
+        const position =
+            Math.floor(
+                Math.random() *
+                (username.length + 1)
+            );
+
+        username =
+            username.slice(0,position)
+            + "_"
+            + username.slice(position);
+
+    }
+
+
+    return username;
+
+}
+
+
+function updateUsageCounter(){
+    const counter = document.getElementById("usageCounter");
+    if(!counter) return;
+
+    try{
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+        const plan = String(userData.plan || "Free").trim().toLowerCase();
+
+        if(plan === "pro"){
+            counter.textContent = "HAFA PRO · Unlimited generations";
+            counter.style.color = "#16a34a";
+            return;
+        }
+
+        const today = new Date().toISOString().slice(0, 10);
+        const usage = JSON.parse(localStorage.getItem("hafa_username_usage") || "{}");
+
+        const count = usage.date === today ? (usage.count || 0) : 0;
+        const remaining = Math.max(0, 5 - count);
+
+        counter.textContent = "Free Plan · " + remaining + "/5 generations remaining today";
+        counter.style.color = remaining === 0 ? "#dc2626" : "#64748b";
+
+    }catch(error){
+        console.error("Username counter error:", error);
+    }
+}
+
+function generateUsernames(){
+
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+        const plan = String(userData.plan || "Free").trim().toLowerCase();
+
+        if(plan !== "pro"){
+            const today = new Date().toISOString().slice(0, 10);
+            const key = "hafa_username_usage";
+            const usage = JSON.parse(localStorage.getItem(key) || "{}");
+
+            if(usage.date !== today){
+                usage.date = today;
+                usage.count = 0;
+            }
+
+            if((usage.count || 0) >= 5){
+                alert("Batas Free Plan sudah mencapai 5 generate username hari ini. Upgrade ke HAFA PRO untuk generate tanpa batas.");
+                return;
+            }
+
+            usage.count = (usage.count || 0) + 1;
+            localStorage.setItem(key, JSON.stringify(usage));
+        }
+
+        updateUsageCounter();
+
+
+    usernameList.innerHTML = "";
+
+    const keyword =
+        keywordInput.value.trim();
+
+    const style =
+        styleInput.value;
+
+
+    const generated = new Set();
+
+
+    while(generated.size < 10){
+
+        generated.add(
+            generateOne(
+                keyword,
+                style
+            )
+        );
+
+    }
+
+
+    generated.forEach(function(username){
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "username-item";
+
+
+        const name =
+            document.createElement("div");
+
+        name.className =
+            "username";
+
+        name.textContent =
+            "@" + username;
+
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "copy-small";
+
+        button.textContent =
+            "Copy";
+
+
+        button.onclick =
+            function(){
+
+                copyUsername(
+                    username,
+                    button
+                );
+
+            };
+
+
+        item.appendChild(name);
+
+        item.appendChild(button);
+
+        usernameList.appendChild(item);
+
+    });
+
+    /* TOOLS USED */
+    const currentUsed = parseInt(localStorage.getItem("hafa_tools_used") || "0", 10);
+    localStorage.setItem("hafa_tools_used", String(currentUsed + 1));
+
+    // Save generated usernames to My History
+    try {
+        let history = JSON.parse(localStorage.getItem("hafa_history") || "[]");
+
+        history.unshift({
+            id: Date.now(),
+            type: "Username",
+            icon: "👤",
+            title: "Username",
+            content: Array.from(generated).map(function(username){
+                return "@" + username;
+            }).join("\n"),
+            date: new Date().toISOString()
+        });
+
+        history = history.slice(0, 100);
+        localStorage.setItem("hafa_history", JSON.stringify(history));
+    } catch(error) {
+        console.error("Failed to save username history:", error);
+    }
+
+}
+
+
+async function copyUsername(username,button){
+
+    try{
+
+        await navigator.clipboard.writeText(
+            username
+        );
+
+        button.textContent =
+            "Copied!";
+
+        setTimeout(function(){
+
+            button.textContent =
+                "Copy";
+
+        },1200);
+
+    }catch(error){
+
+        alert(
+            "Unable to copy username."
+        );
+
+    }
+
+}
+
+
+generateUsernames();
+
+
+document.addEventListener("DOMContentLoaded", updateUsageCounter);
+</script>
+
+</body>
+</html>

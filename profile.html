@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Profile — HAFA TOOLS</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+    color:#0f172a;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#ffffff;
+    border-right:1px solid #e5e7eb;
+    padding:24px 16px;
+    z-index:10;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:800;
+    color:#2563eb;
+    padding:0 14px 28px;
+}
+
+.logo span{
+    color:#64748b;
+    font-size:15px;
+    font-weight:500;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#64748b;
+    padding:12px 14px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.menu a:hover{
+    background:#eff6ff;
+    color:#2563eb;
+}
+
+.menu a.active{
+    background:#eff6ff;
+    color:#2563eb;
+}
+
+.menu-divider{
+    height:1px;
+    background:#e5e7eb;
+    margin:14px 0;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:250px;
+    min-height:100vh;
+}
+
+/* TOPBAR */
+
+.topbar{
+    height:72px;
+    background:#ffffff;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 32px;
+}
+
+.topbar-title{
+    font-size:18px;
+    font-weight:700;
+}
+
+.user-mini{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#2563eb;
+    color:#ffffff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:14px;
+}
+
+.user-info{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.user-name{
+    font-size:13px;
+    font-weight:700;
+}
+
+.plan-badge{
+    font-size:11px;
+    font-weight:700;
+}
+
+/* CONTENT */
+
+.content{
+    padding:32px;
+    max-width:1100px;
+}
+
+.page-heading{
+    margin-bottom:26px;
+}
+
+.page-heading h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.page-heading p{
+    color:#64748b;
+    font-size:14px;
+}
+
+/* PROFILE GRID */
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.card{
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 4px 14px rgba(15,23,42,.04);
+}
+
+.card h2{
+    font-size:17px;
+    margin-bottom:20px;
+}
+
+.profile-header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:24px;
+}
+
+.big-avatar{
+    width:76px;
+    height:76px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    font-weight:800;
+}
+
+.profile-name{
+    font-size:21px;
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.profile-email{
+    color:#64748b;
+    font-size:13px;
+}
+
+/* INFO */
+
+.info-list{
+    display:flex;
+    flex-direction:column;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    padding:14px 0;
+    border-bottom:1px solid #eef2f7;
+}
+
+.info-row:last-child{
+    border-bottom:none;
+}
+
+.info-label{
+    color:#64748b;
+    font-size:13px;
+}
+
+.info-value{
+    font-size:14px;
+    font-weight:700;
+    text-align:right;
+}
+
+/* PLAN */
+
+.plan-card{
+    border:1px solid #dbeafe;
+    background:#f8fbff;
+}
+
+.plan-icon{
+    width:48px;
+    height:48px;
+    border-radius:12px;
+    background:#dbeafe;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    margin-bottom:16px;
+}
+
+.plan-name{
+    font-size:22px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+.plan-description{
+    color:#64748b;
+    font-size:13px;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.pro{
+    color:#16a34a;
+}
+
+.free{
+    color:#2563eb;
+}
+
+/* BUTTONS */
+
+.btn{
+    border:none;
+    border-radius:10px;
+    padding:12px 18px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-primary:hover{
+    background:#1d4ed8;
+}
+
+.btn-danger{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.btn-danger:hover{
+    background:#fecaca;
+}
+
+.btn-secondary{
+    background:#f1f5f9;
+    color:#334155;
+}
+
+.btn-secondary:hover{
+    background:#e2e8f0;
+}
+
+.button-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* QUICK LINKS */
+
+.quick-links{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.quick-link{
+    text-decoration:none;
+    color:#0f172a;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:16px;
+    background:#ffffff;
+    transition:.2s;
+}
+
+.quick-link:hover{
+    border-color:#bfdbfe;
+    background:#f8fbff;
+}
+
+.quick-icon{
+    font-size:22px;
+    margin-bottom:9px;
+}
+
+.quick-title{
+    font-size:13px;
+    font-weight:700;
+}
+
+.quick-description{
+    color:#64748b;
+    font-size:11px;
+    margin-top:4px;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .sidebar{
+        width:210px;
+    }
+
+    .main{
+        margin-left:210px;
+    }
+
+    .profile-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        border-right:none;
+        border-bottom:1px solid #e5e7eb;
+        padding:16px;
+    }
+
+    .logo{
+        padding:0 8px 15px;
+    }
+
+    .menu{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .menu-divider{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .topbar{
+        padding:0 18px;
+    }
+
+    .content{
+        padding:20px 16px;
+    }
+
+    .page-heading h1{
+        font-size:25px;
+    }
+
+    .quick-links{
+        grid-template-columns:1fr;
+    }
+
+    .user-info{
+        display:none;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        HAFA <span>tools</span>
+    </div>
+
+    <nav class="menu">
+
+        <a href="dashboard.html">
+            🏠 Dashboard
+        </a>
+
+        <a href="dashboard.html#tools">
+            🛠️ Tools
+        </a>
+
+        <a href="history.html">
+            🕘 My History
+        </a>
+
+        <a href="pricing.html">
+            💎 Pricing
+        </a>
+
+        <a href="profile.html" class="active">
+            👤 Profile
+        </a>
+
+        <div class="menu-divider"></div>
+
+        <a href="#" onclick="logout(); return false;">
+            🚪 Logout
+        </a>
+
+    </nav>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div class="topbar-title">
+            Profile
+        </div>
+
+        <div class="user-mini">
+
+            <div class="avatar" id="topAvatar">
+                H
+            </div>
+
+            <div class="user-info">
+
+                <div class="user-name" id="topName">
+                    User
+                </div>
+
+                <div
+                    class="plan-badge"
+                    id="topPlan"
+                >
+                    FREE PLAN
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+        <div class="page-heading">
+
+            <h1>
+                My Profile
+            </h1>
+
+            <p>
+                Manage your HAFA TOOLS account and subscription.
+            </p>
+
+        </div>
+
+
+        <div class="profile-grid">
+
+
+            <!-- ACCOUNT -->
+
+            <div class="card">
+
+                <h2>
+                    Account Information
+                </h2>
+
+                <div class="profile-header">
+
+                    <div
+                        class="big-avatar"
+                        id="bigAvatar"
+                    >
+                        H
+                    </div>
+
+                    <div>
+
+                        <div
+                            class="profile-name"
+                            id="profileName"
+                        >
+                            User
+                        </div>
+
+                        <div
+                            class="profile-email"
+                            id="profileEmail"
+                        >
+                            user@example.com
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-list">
+
+                    <div class="info-row">
+
+                        <div class="info-label">
+                            Full Name
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="infoName"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <div class="info-label">
+                            Email
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="infoEmail"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <div class="info-label">
+                            Account Plan
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="infoPlan"
+                        >
+                            Free
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <div class="info-label">
+                            Joined
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="infoJoined"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLAN -->
+
+            <div class="card plan-card">
+
+                <div class="plan-icon">
+                    💎
+                </div>
+
+                <div
+                    class="plan-name"
+                    id="planName"
+                >
+                    Free Plan
+                </div>
+
+                <div
+                    class="plan-description"
+                    id="planDescription"
+                >
+                    Access essential HAFA TOOLS with daily generation limits.
+                </div>
+
+                <div class="button-row">
+
+                    <button
+                        class="btn btn-primary"
+                        id="upgradeButton"
+                        onclick="goToPricing()"
+                    >
+                        Upgrade to HAFA PRO
+                    </button>
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="goToDashboard()"
+                    >
+                        Dashboard
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="card">
+
+                <h2>
+                    Quick Access
+                </h2>
+
+                <div class="quick-links">
+
+                    <a
+                        href="history.html"
+                        class="quick-link"
+                    >
+
+                        <div class="quick-icon">
+                            🕘
+                        </div>
+
+                        <div class="quick-title">
+                            My History
+                        </div>
+
+                        <div class="quick-description">
+                            View your generated content.
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="pricing.html"
+                        class="quick-link"
+                    >
+
+                        <div class="quick-icon">
+                            💎
+                        </div>
+
+                        <div class="quick-title">
+                            Pricing
+                        </div>
+
+                        <div class="quick-description">
+                            View HAFA TOOLS plans.
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="dashboard.html"
+                        class="quick-link"
+                    >
+
+                        <div class="quick-icon">
+                            🛠️
+                        </div>
+
+                        <div class="quick-title">
+                            All Tools
+                        </div>
+
+                        <div class="quick-description">
+                            Open your HAFA tools.
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- SECURITY -->
+
+            <div class="card">
+
+                <h2>
+                    Account Actions
+                </h2>
+
+                <p
+                    style="
+                    color:#64748b;
+                    font-size:13px;
+                    line-height:1.6;
+                    margin-bottom:18px;
+                    "
+                >
+                    Keep your account secure and manage your HAFA TOOLS session.
+                </p>
+
+                <div class="button-row">
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="goToDashboard()"
+                    >
+                        Back to Dashboard
+                    </button>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="logout()"
+                    >
+                        Logout
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+/* AUTH GUARD */
+
+const storedUser =
+    localStorage.getItem("hafa_user");
+
+if(!storedUser){
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* LOAD USER */
+
+function loadProfile(){
+
+    try{
+
+        const user =
+            JSON.parse(
+                localStorage.getItem("hafa_user") || "{}"
+            );
+
+        if(!user.email){
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        const name =
+            user.name || "User";
+
+        const email =
+            user.email || "-";
+
+        const plan =
+            String(
+                user.plan || "Free"
+            ).trim();
+
+
+        /* AVATAR */
+
+        const firstLetter =
+            name
+                .trim()
+                .charAt(0)
+                .toUpperCase() || "H";
+
+
+        document.getElementById(
+            "topAvatar"
+        ).textContent = firstLetter;
+
+
+        document.getElementById(
+            "bigAvatar"
+        ).textContent = firstLetter;
+
+
+        /* NAME */
+
+        document.getElementById(
+            "topName"
+        ).textContent = name;
+
+
+        document.getElementById(
+            "profileName"
+        ).textContent = name;
+
+
+        document.getElementById(
+            "infoName"
+        ).textContent = name;
+
+
+        /* EMAIL */
+
+        document.getElementById(
+            "profileEmail"
+        ).textContent = email;
+
+
+        document.getElementById(
+            "infoEmail"
+        ).textContent = email;
+
+
+        /* PLAN */
+
+        document.getElementById(
+            "infoPlan"
+        ).textContent = plan;
+
+
+        if(
+            plan.toLowerCase() === "pro"
+        ){
+
+            document.getElementById(
+                "topPlan"
+            ).textContent =
+                "HAFA PRO";
+
+            document.getElementById(
+                "topPlan"
+            ).className =
+                "plan-badge pro";
+
+
+            document.getElementById(
+                "infoPlan"
+            ).className =
+                "info-value pro";
+
+
+            document.getElementById(
+                "planName"
+            ).textContent =
+                "HAFA PRO";
+
+
+            document.getElementById(
+                "planName"
+            ).className =
+                "plan-name pro";
+
+
+            document.getElementById(
+                "planDescription"
+            ).textContent =
+                "You have access to unlimited HAFA TOOLS generations and Pro features.";
+
+
+            document.getElementById(
+                "upgradeButton"
+            ).textContent =
+                "HAFA PRO Active";
+
+
+            document.getElementById(
+                "upgradeButton"
+            ).disabled = true;
+
+
+            document.getElementById(
+                "upgradeButton"
+            ).style.background =
+                "#dcfce7";
+
+            document.getElementById(
+                "upgradeButton"
+            ).style.color =
+                "#16a34a";
+
+        }else{
+
+            document.getElementById(
+                "topPlan"
+            ).textContent =
+                "FREE PLAN";
+
+            document.getElementById(
+                "topPlan"
+            ).className =
+                "plan-badge free";
+
+
+            document.getElementById(
+                "infoPlan"
+            ).className =
+                "info-value free";
+
+
+            document.getElementById(
+                "planName"
+            ).textContent =
+                "Free Plan";
+
+
+            document.getElementById(
+                "planName"
+            ).className =
+                "plan-name free";
+
+
+            document.getElementById(
+                "planDescription"
+            ).textContent =
+                "Access essential HAFA TOOLS with daily generation limits.";
+
+        }
+
+
+        /* JOIN DATE */
+
+        if(user.createdAt){
+
+            const date =
+                new Date(
+                    user.createdAt
+                );
+
+            document.getElementById(
+                "infoJoined"
+            ).textContent =
+                date.toLocaleDateString(
+                    "en-US",
+                    {
+                        year:"numeric",
+                        month:"long",
+                        day:"numeric"
+                    }
+                );
+
+        }else{
+
+            document.getElementById(
+                "infoJoined"
+            ).textContent =
+                "-";
+
+        }
+
+    }catch(error){
+
+        console.error(
+            "Profile error:",
+            error
+        );
+
+        localStorage.removeItem(
+            "hafa_user"
+        );
+
+        window.location.href =
+            "login.html";
+
+    }
+
+}
+
+
+/* NAVIGATION */
+
+function goToPricing(){
+
+    window.location.href =
+        "pricing.html";
+
+}
+
+
+function goToDashboard(){
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    const confirmLogout =
+        confirm(
+            "Apakah kamu yakin ingin logout dari HAFA TOOLS?"
+        );
+
+    if(!confirmLogout){
+
+        return;
+
+    }
+
+    localStorage.removeItem(
+        "hafa_user"
+    );
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* INIT */
+
+loadProfile();
+
+</script>
+
+</body>
+</html>

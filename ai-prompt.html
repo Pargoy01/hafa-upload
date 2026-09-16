@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Prompt Generator - HAFA TOOLS</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#f5f7fb;
+    color:#0f172a;
+}
+
+.topbar{
+    height:70px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 28px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    text-decoration:none;
+    display:flex;
+    align-items:baseline;
+    gap:5px;
+}
+
+.logo-main{
+    font-size:23px;
+    font-weight:800;
+    color:#0f172a;
+    letter-spacing:-1.5px;
+}
+
+.logo-sub{
+    font-size:14px;
+    font-weight:600;
+    color:#2563eb;
+    letter-spacing:1px;
+}
+
+.back{
+    text-decoration:none;
+    color:#475569;
+    font-size:14px;
+    font-weight:600;
+}
+
+.container{
+    max-width:1100px;
+    margin:0 auto;
+    padding:42px 20px 60px;
+}
+
+.hero{
+    margin-bottom:28px;
+}
+
+.hero h1{
+    font-size:34px;
+    letter-spacing:-1px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:#64748b;
+    font-size:15px;
+}
+
+.layout{
+    display:grid;
+    grid-template-columns:390px 1fr;
+    gap:24px;
+}
+
+.card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 8px 30px rgba(15,23,42,.05);
+}
+
+.card h2{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.field{
+    margin-bottom:17px;
+}
+
+.field label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:7px;
+    color:#334155;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #dbe2ea;
+    border-radius:10px;
+    padding:12px 13px;
+    font-size:14px;
+    outline:none;
+    background:white;
+    color:#0f172a;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.08);
+}
+
+textarea{
+    min-height:95px;
+    resize:vertical;
+}
+
+.generate{
+    width:100%;
+    border:0;
+    border-radius:11px;
+    padding:13px;
+    background:#2563eb;
+    color:white;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.generate:hover{
+    background:#1d4ed8;
+    transform:translateY(-1px);
+}
+
+.prompt-box{
+    min-height:390px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:18px;
+    font-size:14px;
+    line-height:1.8;
+    white-space:pre-wrap;
+    color:#334155;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.action{
+    flex:1;
+    border:1px solid #dbe2ea;
+    background:white;
+    border-radius:10px;
+    padding:11px;
+    cursor:pointer;
+    font-weight:700;
+    color:#334155;
+}
+
+.action:hover{
+    background:#f8fafc;
+}
+
+.success{
+    display:none;
+    margin-top:10px;
+    color:#16a34a;
+    font-size:13px;
+    font-weight:600;
+}
+
+.tip{
+    margin-top:18px;
+    padding:13px;
+    background:#eff6ff;
+    border-radius:10px;
+    color:#1e40af;
+    font-size:12px;
+    line-height:1.6;
+}
+
+@media(max-width:800px){
+    .layout{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .topbar{
+        padding:0 18px;
+    }
+
+    .container{
+        padding-top:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+
+    <a href="dashboard.html" class="logo">
+        <span class="logo-main">HAFA</span>
+        <span class="logo-sub">tools</span>
+    </a>
+
+    <a href="dashboard.html" class="back">
+        ← Dashboard
+    </a>
+
+</div>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>🤖 AI Prompt Generator</h1>
+        <p>Create detailed prompts for AI image, video, story and social media generation.</p>
+    </div>
+
+    <div class="layout">
+
+        <div class="card">
+
+            <h2>Prompt Settings</h2>
+
+            <div class="field">
+                <label>Content Type</label>
+                <select id="type">
+                    <option value="image">AI Image</option>
+                    <option value="video">AI Video</option>
+                    <option value="story">Story / Film</option>
+                    <option value="advertisement">Advertisement</option>
+                    <option value="social">Social Media</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Style</label>
+                <select id="style">
+                    <option>Cinematic</option>
+                    <option>Ultra Realistic</option>
+                    <option>Documentary</option>
+                    <option>Anime</option>
+                    <option>3D Animation</option>
+                    <option>Fantasy</option>
+                    <option>Vintage Film</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Subject</label>
+                <input id="subject" placeholder="Example: a young man camping alone">
+            </div>
+
+            <div class="field">
+                <label>Location</label>
+                <input id="location" placeholder="Example: tropical forest near a river">
+            </div>
+
+            <div class="field">
+                <label>Mood</label>
+                <select id="mood">
+                    <option>Peaceful</option>
+                    <option>Emotional</option>
+                    <option>Mysterious</option>
+                    <option>Epic</option>
+                    <option>Romantic</option>
+                    <option>Dark</option>
+                    <option>Energetic</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Camera</label>
+                <select id="camera">
+                    <option>Cinematic medium shot</option>
+                    <option>Close-up</option>
+                    <option>Wide establishing shot</option>
+                    <option>Low angle</option>
+                    <option>High angle</option>
+                    <option>Drone aerial shot</option>
+                    <option>Tracking shot</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Lighting</label>
+                <select id="lighting">
+                    <option>Soft natural light</option>
+                    <option>Golden hour</option>
+                    <option>Sunrise</option>
+                    <option>Sunset</option>
+                    <option>Dramatic cinematic lighting</option>
+                    <option>Night ambient lighting</option>
+                    <option>Neon lighting</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Aspect Ratio</label>
+                <select id="ratio">
+                    <option>9:16 vertical</option>
+                    <option>16:9 landscape</option>
+                    <option>1:1 square</option>
+                    <option>4:5 portrait</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Additional Details</label>
+                <textarea id="details" placeholder="Example: realistic facial details, natural movement, detailed environment, realistic shadows"></textarea>
+            </div>
+
+            <button class="generate" onclick="generatePrompt()">
+                ✨ Generate AI Prompt
+            </button>
+
+            <div id="usageCounter" style="text-align:center;margin-top:12px;font-size:13px;color:#64748b;font-weight:600;">
+                Free Plan · 5/5 generations remaining today
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Generated Prompt</h2>
+
+            <div id="prompt" class="prompt-box">
+                Your generated prompt will appear here...
+            </div>
+
+            <div class="actions">
+
+                <button class="action" onclick="copyPrompt()">
+                    📋 Copy Prompt
+                </button>
+
+                <button class="action" onclick="generatePrompt()">
+                    🔄 Generate Again
+                </button>
+
+            </div>
+
+            <div id="success" class="success">
+                ✓ Prompt copied to clipboard
+            </div>
+
+            <div class="tip">
+                💡 <strong>Tip:</strong> The more specific your subject and environment are, the more detailed and consistent the generated prompt will be.
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function updateUsageCounter(){
+    const counter = document.getElementById("usageCounter");
+    if(!counter) return;
+
+    try{
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+        const plan = userData.plan || "Free";
+
+        if(plan === "Pro"){
+            counter.textContent = "HAFA PRO · Unlimited generations";
+            counter.style.color = "#16a34a";
+            return;
+        }
+
+        const today = new Date().toISOString().slice(0, 10);
+        const usage = JSON.parse(localStorage.getItem("hafa_ai_prompt_usage") || "{}");
+
+        let count = usage.date === today ? (usage.count || 0) : 0;
+        let remaining = Math.max(0, 5 - count);
+
+        counter.textContent = "Free Plan · " + remaining + "/5 generations remaining today";
+
+        if(remaining === 0){
+            counter.style.color = "#dc2626";
+        }else{
+            counter.style.color = "#64748b";
+        }
+    }catch(error){
+        console.error("Counter error:", error);
+    }
+}
+
+function generatePrompt(){
+
+    // FREE PLAN LIMIT: 5 generate per hari
+    try {
+        const userData = JSON.parse(localStorage.getItem("hafa_user") || "{}");
+        const plan = userData.plan || "Free";
+        const today = new Date().toISOString().slice(0, 10);
+        const key = "hafa_ai_prompt_usage";
+        const usage = JSON.parse(localStorage.getItem(key) || "{}");
+
+        if(plan !== "Pro"){
+            if(usage.date !== today){
+                usage.date = today;
+                usage.count = 0;
+            }
+
+            if((usage.count || 0) >= 5){
+                alert("Batas Free Plan sudah mencapai 5 generate hari ini. Upgrade ke HAFA PRO untuk generate tanpa batas.");
+                return;
+            }
+
+            usage.count = (usage.count || 0) + 1;
+            localStorage.setItem(key, JSON.stringify(usage));
+        }
+    } catch(error) {
+        console.error("Usage limit error:", error);
+    }
+
+    updateUsageCounter();
+
+    const type = document.getElementById("type").value;
+    const style = document.getElementById("style").value;
+    const subject = document.getElementById("subject").value.trim();
+    const location = document.getElementById("location").value.trim();
+    const mood = document.getElementById("mood").value;
+    const camera = document.getElementById("camera").value;
+    const lighting = document.getElementById("lighting").value;
+    const ratio = document.getElementById("ratio").value;
+    const details = document.getElementById("details").value.trim();
+
+    if(!subject){
+        alert("Please enter a subject first.");
+        document.getElementById("subject").focus();
+        return;
+    }
+
+    const place = location || "a beautiful detailed environment";
+    const extra = details || "highly detailed environment, realistic textures, natural movement, realistic shadows";
+
+    let prompt = "";
+
+    if(type === "image"){
+
+        prompt =
+`Create a ${style.toLowerCase()} AI image of ${subject}.
+
+Environment:
+${place}.
+
+Mood:
+${mood.toLowerCase()} and immersive atmosphere.
+
+Composition:
+${camera.toLowerCase()}, carefully composed frame, strong visual storytelling, natural depth of field.
+
+Lighting:
+${lighting.toLowerCase()}, realistic highlights and shadows.
+
+Visual quality:
+photorealistic details, realistic skin texture, natural facial expression, detailed environment, realistic materials, cinematic color grading, professional photography, subtle depth of field.
+
+Additional details:
+${extra}.
+
+Aspect ratio:
+${ratio}.
+
+No text, no watermark, no distorted anatomy, no extra fingers, no duplicated objects.`;
+
+    }
+
+    else if(type === "video"){
+
+        prompt =
+`Create a ${style.toLowerCase()} AI video featuring ${subject}.
+
+Location:
+${place}.
+
+Scene atmosphere:
+${mood.toLowerCase()}, immersive and emotionally engaging.
+
+Camera:
+${camera.toLowerCase()}, smooth cinematic camera movement, realistic perspective and natural motion.
+
+Lighting:
+${lighting.toLowerCase()}.
+
+Action:
+The subject moves naturally and interacts realistically with the environment. Add subtle environmental movement such as wind, leaves, fabric and natural background motion.
+
+Visual quality:
+photorealistic details, realistic physics, natural body movement, realistic facial expressions, cinematic depth of field, professional color grading.
+
+Additional details:
+${extra}.
+
+Format:
+${ratio}.
+
+Avoid unnatural movement, flickering, distorted faces, duplicated objects and unrealistic physics.`;
+
+    }
+
+    else if(type === "story"){
+
+        prompt =
+`Create a ${style.toLowerCase()} short-film scene about ${subject}.
+
+Setting:
+${place}.
+
+Tone:
+${mood.toLowerCase()} and emotionally engaging.
+
+Cinematography:
+${camera.toLowerCase()}, cinematic composition and expressive framing.
+
+Lighting:
+${lighting.toLowerCase()}.
+
+Story direction:
+Build a believable atmosphere, natural character behavior, realistic dialogue delivery and strong visual storytelling. The scene should feel like a professionally produced movie.
+
+Visual details:
+${extra}.
+
+Format:
+${ratio}.
+
+The scene should feel realistic, cinematic and emotionally memorable.`;
+
+    }
+
+    else if(type === "advertisement"){
+
+        prompt =
+`Create a premium ${style.toLowerCase()} advertisement featuring ${subject}.
+
+Environment:
+${place}.
+
+Brand mood:
+${mood.toLowerCase()}, premium and visually memorable.
+
+Camera:
+${camera.toLowerCase()} with clean commercial composition.
+
+Lighting:
+${lighting.toLowerCase()}, polished highlights and realistic shadows.
+
+Presentation:
+Make the subject the visual focus. Use professional commercial cinematography, clean composition, realistic materials, premium visual quality and cinematic color grading.
+
+Additional details:
+${extra}.
+
+Format:
+${ratio}.
+
+The final result should look like a professional high-budget advertisement.`;
+
+    }
+
+    else if(type === "social"){
+
+        prompt =
+`Create a highly engaging ${style.toLowerCase()} social media visual about ${subject}.
+
+Location:
+${place}.
+
+Mood:
+${mood.toLowerCase()}.
+
+Camera:
+${camera.toLowerCase()}.
+
+Lighting:
+${lighting.toLowerCase()}.
+
+Creative direction:
+Strong visual hook within the first moment, clear subject focus, visually appealing composition, realistic details and social-media-friendly framing.
+
+Additional details:
+${extra}.
+
+Format:
+${ratio}.
+
+Make the visual attention-grabbing, natural, modern and suitable for short-form social media content.`;
+
+    }
+
+    document.getElementById("prompt").textContent = prompt;
+    updateUsageCounter();
+
+    // Save generated prompt to My History
+    try {
+        let history = JSON.parse(localStorage.getItem("hafa_history") || "[]");
+
+        history.unshift({
+            id: Date.now(),
+            type: "AI Prompt",
+            icon: "🤖",
+            title: "AI Prompt",
+            content: prompt,
+            date: new Date().toISOString()
+        });
+
+        history = history.slice(0, 100);
+        localStorage.setItem("hafa_history", JSON.stringify(history));
+    } catch(error) {
+        console.error("Failed to save history:", error);
+    }
+
+}
+
+
+async function copyPrompt(){
+
+    const text = document.getElementById("prompt").textContent;
+
+    if(!text || text === "Your generated prompt will appear here..."){
+        alert("Generate a prompt first.");
+        return;
+    }
+
+    try{
+
+        await navigator.clipboard.writeText(text);
+
+        const success = document.getElementById("success");
+        success.style.display = "block";
+
+        setTimeout(function(){
+            success.style.display = "none";
+        },2000);
+
+    }catch(error){
+
+        alert("Copy failed. Please select and copy the prompt manually.");
+
+    }
+
+}
+
+
+generatePrompt();
+
+</script>
+
+</body>
+</html>
+
+<script>
+document.addEventListener("DOMContentLoaded", updateUsageCounter);
+</script>

@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Temporary Email — HAFA TOOLS</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #070707;
+    --card: rgba(20,20,20,.78);
+    --card2: rgba(255,255,255,.045);
+    --gold: #d6a84f;
+    --gold2: #f0c86a;
+    --text: #f5f5f5;
+    --muted: #999;
+    --green: #35d07f;
+    --red: #ff5d5d;
+    --border: rgba(255,255,255,.09);
+}
+
+body {
+    min-height: 100vh;
+    font-family: Inter, Arial, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 20% 0%, rgba(214,168,79,.13), transparent 30%),
+        radial-gradient(circle at 90% 30%, rgba(120,80,20,.10), transparent 30%),
+        var(--bg);
+}
+
+.container {
+    width: min(1100px, 94%);
+    margin: auto;
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--gold2);
+}
+
+.back {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back:hover {
+    color: white;
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+    padding: 55px 10px 30px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border: 1px solid rgba(214,168,79,.25);
+    background: rgba(214,168,79,.08);
+    color: var(--gold2);
+    border-radius: 30px;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 6vw, 58px);
+    line-height: 1.05;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+}
+
+.hero h1 span {
+    color: var(--gold2);
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 620px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+/* MAIN CARD */
+
+.tool-card {
+    max-width: 820px;
+    margin: 25px auto 50px;
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    background: var(--card);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 25px 80px rgba(0,0,0,.45);
+}
+
+/* EMAIL BOX */
+
+.email-box {
+    border: 1px solid rgba(214,168,79,.25);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(214,168,79,.12),
+            rgba(255,255,255,.025)
+        );
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+}
+
+.label {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.email-address {
+    font-size: clamp(19px, 5vw, 28px);
+    font-weight: 700;
+    color: white;
+    word-break: break-all;
+    margin-bottom: 15px;
+}
+
+.email-address span {
+    color: var(--gold2);
+}
+
+.timer {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #bbb;
+    font-size: 13px;
+}
+
+.timer strong {
+    color: var(--gold2);
+}
+
+/* BUTTONS */
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+    border-radius: 13px;
+    padding: 14px 15px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #111;
+}
+
+.secondary {
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--border);
+    color: white;
+}
+
+.danger {
+    background: rgba(255,80,80,.08);
+    border: 1px solid rgba(255,80,80,.18);
+    color: #ff7777;
+}
+
+.otp-btn {
+    background: rgba(53,208,127,.09);
+    border: 1px solid rgba(53,208,127,.2);
+    color: #55df91;
+}
+
+/* STATUS */
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    color: #aaa;
+    font-size: 12px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--green);
+}
+
+/* INBOX */
+
+.inbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 35px;
+    margin-bottom: 13px;
+}
+
+.inbox-title {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.inbox-count {
+    font-size: 11px;
+    color: #aaa;
+    background: rgba(255,255,255,.06);
+    padding: 5px 9px;
+    border-radius: 20px;
+}
+
+.inbox {
+    min-height: 180px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: rgba(255,255,255,.025);
+    padding: 14px;
+}
+
+.empty {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+    opacity: .7;
+}
+
+.message {
+    padding: 17px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.035);
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.message:last-child {
+    margin-bottom: 0;
+}
+
+.message-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 7px;
+}
+
+.sender {
+    color: var(--gold2);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.time {
+    color: #777;
+    font-size: 11px;
+}
+
+.subject {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.body {
+    color: #999;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.otp {
+    margin-top: 12px;
+    padding: 13px;
+    border-radius: 12px;
+    background: rgba(214,168,79,.08);
+    border: 1px solid rgba(214,168,79,.2);
+    text-align: center;
+}
+
+.otp-label {
+    color: #999;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.otp-code {
+    color: var(--gold2);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin: 4px 0 8px;
+}
+
+.copy-otp {
+    padding: 8px 13px;
+    font-size: 11px;
+    background: rgba(255,255,255,.07);
+    color: white;
+}
+
+/* FEATURES */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.feature {
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card2);
+}
+
+.feature-icon {
+    font-size: 22px;
+    margin-bottom: 9px;
+}
+
+.feature h3 {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.feature p {
+    color: #777;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 30px 10px 45px;
+    color: #666;
+    font-size: 12px;
+}
+
+footer strong {
+    color: #aaa;
+}
+
+/* MOBILE */
+
+@media(max-width:650px) {
+
+    .navbar {
+        height: 62px;
+    }
+
+    .hero {
+        padding-top: 38px;
+    }
+
+    .tool-card {
+        padding: 15px;
+        border-radius: 20px;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .email-box {
+        padding: 20px 14px;
+    }
+
+    .message-top {
+        flex-direction: column;
+        gap: 3px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+        <div class="logo">
+            HAFA <span>TOOLS</span>
+        </div>
+
+        <a href="index.html" class="back">
+            ← Back to Tools
+        </a>
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="badge">
+            🛡️ TEMPORARY EMAIL
+        </div>
+
+        <h1>
+            Your Temporary<br>
+            <span>Inbox.</span>
+        </h1>
+
+        <p>
+            Generate a temporary email address instantly.
+            Receive test messages and OTP codes directly
+            inside your private temporary inbox.
+        </p>
+
+    </section>
+
+
+    <!-- TOOL -->
+
+    <section class="tool-card">
+
+        <div class="email-box">
+
+            <div class="label">
+                Your temporary email
+            </div>
+
+            <div class="email-address" id="emailAddress">
+                Belum ada email
+            </div>
+
+            <div class="timer">
+                ⏳ Expires in
+                <strong id="countdown">10:00</strong>
+            </div>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button class="primary" onclick="generateInbox()">
+                ✨ Generate Email
+            </button>
+
+            <button class="secondary" onclick="refreshInbox()">
+                ↻ Refresh Inbox
+            </button>
+
+            <button class="otp-btn" onclick="testOtp()">
+                🔐 Test OTP
+            </button>
+
+            <button class="danger" onclick="deleteInbox()">
+                🗑 Delete Inbox
+            </button>
+
+        </div>
+
+
+        <div class="status">
+            <span class="dot"></span>
+            HAFA Temporary Mail Service Online
+        </div>
+
+
+        <!-- INBOX -->
+
+        <div class="inbox-header">
+
+            <div class="inbox-title">
+                📥 Inbox
+            </div>
+
+            <div class="inbox-count" id="messageCount">
+                0 messages
+            </div>
+
+        </div>
+
+        <div class="inbox" id="inbox">
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                <div>
+                    Your inbox is empty
+                </div>
+
+                <small>
+                    Generate an email to get started
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <h3>Instant</h3>
+
+                <p>
+                    Create a temporary inbox in seconds.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🔒
+                </div>
+
+                <h3>Private</h3>
+
+                <p>
+                    Your temporary inbox is isolated.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ⏱️
+                </div>
+
+                <h3>Auto Expire</h3>
+
+                <p>
+                    Temporary inboxes are designed for short-term use.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        © 2026 <strong>HAFA TOOLS</strong> · Smart Online Tools
+    </footer>
+
+</div>
+
+
+<script>
+
+const API = "https://hafa-tools-backend.vercel.app";
+
+let inboxId = null;
+let expiresAt = null;
+let timer = null;
+
+
+/* SAFE HTML */
+
+function safe(text) {
+
+    return String(text ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* FORMAT TIME */
+
+function formatDate(date) {
+
+    try {
+
+        return new Date(date).toLocaleString("id-ID", {
+            day: "2-digit",
+            month: "short",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+
+    } catch {
+
+        return "";
+
+    }
+
+}
+
+
+/* COUNTDOWN */
+
+function startCountdown() {
+
+    clearInterval(timer);
+
+    timer = setInterval(() => {
+
+        if (!expiresAt) return;
+
+        const remaining =
+            Math.max(0, expiresAt - Date.now());
+
+        const minutes =
+            Math.floor(remaining / 60000);
+
+        const seconds =
+            Math.floor((remaining % 60000) / 1000);
+
+        document.getElementById("countdown").textContent =
+            `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+
+        if (remaining <= 0) {
+
+            clearInterval(timer);
+
+            document.getElementById("countdown").textContent =
+                "Expired";
+
+        }
+
+    }, 1000);
+
+}
+
+
+/* GENERATE */
+
+async function generateInbox() {
+
+    try {
+
+        const res =
+            await fetch(`${API}/api/inbox/create`, {
+                method: "POST"
+            });
+
+        const data = await res.json();
+
+        if (!data.success) {
+
+            alert(data.message || "Gagal membuat inbox");
+
+            return;
+
+        }
+
+        inboxId = data.inbox.id;
+
+        expiresAt =
+            Date.now() + (10 * 60 * 1000);
+
+        document.getElementById("emailAddress").innerHTML =
+            safe(data.inbox.address);
+
+        document.getElementById("messageCount").textContent =
+            "0 messages";
+
+        renderMessages([]);
+
+        startCountdown();
+
+    } catch (error) {
+
+        alert("Tidak dapat terhubung ke server HAFA TOOLS.");
+
+    }
+
+}
+
+
+/* REFRESH */
+
+async function refreshInbox() {
+
+    if (!inboxId) {
+
+        alert("Buat email terlebih dahulu.");
+
+        return;
+
+    }
+
+    try {
+
+        const res =
+            await fetch(`${API}/api/inbox/${inboxId}`);
+
+        const data = await res.json();
+
+        if (!data.success) {
+
+            alert(data.message || "Gagal mengambil inbox");
+
+            return;
+
+        }
+
+        renderMessages(
+            data.inbox.messages || []
+        );
+
+    } catch {
+
+        alert("Gagal menghubungi server.");
+
+    }
+
+}
+
+
+/* TEST OTP */
+
+async function testOtp() {
+
+    if (!inboxId) {
+
+        alert("Buat email terlebih dahulu.");
+
+        return;
+
+    }
+
+    try {
+
+        const res =
+            await fetch(
+                `${API}/api/inbox/${inboxId}/test-otp`,
+                {
+                    method: "POST"
+                }
+            );
+
+        const data = await res.json();
+
+        if (!data.success) {
+
+            alert(data.message || "Gagal membuat OTP");
+
+            return;
+
+        }
+
+        await refreshInbox();
+
+    } catch {
+
+        alert("Gagal menghubungi server.");
+
+    }
+
+}
+
+
+/* DELETE */
+
+async function deleteInbox() {
+
+    if (!inboxId) {
+
+        alert("Belum ada inbox.");
+
+        return;
+
+    }
+
+    if (!confirm("Hapus inbox ini? Semua pesan akan ikut dihapus.")) {
+
+        return;
+
+    }
+
+    try {
+
+        const res =
+            await fetch(
+                `${API}/api/inbox/${inboxId}`,
+                {
+                    method: "DELETE"
+                }
+            );
+
+        const data = await res.json();
+
+        if (!data.success) {
+
+            alert(data.message || "Gagal menghapus inbox");
+
+            return;
+
+        }
+
+        inboxId = null;
+        expiresAt = null;
+
+        clearInterval(timer);
+
+        document.getElementById("emailAddress").textContent =
+            "Belum ada email";
+
+        document.getElementById("countdown").textContent =
+            "10:00";
+
+        renderMessages([]);
+
+        alert("Inbox berhasil dihapus.");
+
+    } catch {
+
+        alert("Gagal menghubungi server.");
+
+    }
+
+}
+
+
+/* RENDER */
+
+function renderMessages(messages) {
+
+    const inbox =
+        document.getElementById("inbox");
+
+    document.getElementById("messageCount").textContent =
+        `${messages.length} message${messages.length === 1 ? "" : "s"}`;
+
+    if (!messages.length) {
+
+        inbox.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">📭</div>
+                <div>Your inbox is empty</div>
+                <small>Messages will appear here</small>
+            </div>
+        `;
+
+        return;
+
+    }
+
+    inbox.innerHTML =
+        messages.map(message => `
+
+            <div class="message">
+
+                <div class="message-top">
+
+                    <div class="sender">
+                        ${safe(message.from)}
+                    </div>
+
+                    <div class="time">
+                        ${formatDate(message.receivedAt)}
+                    </div>
+
+                </div>
+
+                <div class="subject">
+                    ${safe(message.subject)}
+                </div>
+
+                <div class="body">
+                    ${safe(message.body)}
+                </div>
+
+                ${
+                    message.otp
+                    ?
+                    `
+                    <div class="otp">
+
+                        <div class="otp-label">
+                            Verification Code
+                        </div>
+
+                        <div class="otp-code">
+                            ${safe(message.otp)}
+                        </div>
+
+                        <button
+                            class="copy-otp"
+                            onclick="copyOtp('${safe(message.otp)}')"
+                        >
+                            📋 Copy OTP
+                        </button>
+
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* COPY OTP */
+
+async function copyOtp(code) {
+
+    try {
+
+        await navigator.clipboard.writeText(code);
+
+        alert("OTP berhasil disalin.");
+
+    } catch {
+
+        alert("Gagal menyalin OTP.");
+
+    }
+
+}
+
+
+/* AUTO REFRESH */
+
+setInterval(() => {
+
+    if (inboxId) {
+
+        refreshInbox();
+
+    }
+
+}, 5000);
+
+</script>
+
+</body>
+</html>
